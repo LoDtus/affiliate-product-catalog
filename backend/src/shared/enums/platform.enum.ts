@@ -1,0 +1,8 @@
+export enum Platform {
+	AMAZON = 'AMAZON',
+	EBAY = 'EBAY',
+	ALIEXPRESS = 'ALIEXPRESS',
+	SHOPEE = 'SHOPEE',
+	TIKTOK_SHOP = 'TIKTOK_SHOP',
+	UNKNOWN = 'UNKNOWN',
+}

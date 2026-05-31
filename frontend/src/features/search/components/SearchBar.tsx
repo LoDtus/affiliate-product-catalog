@@ -1,0 +1,49 @@
+"use client";
+import "../search.css";
+import AdvancedSearchPopup from "@/features/search/components/AdvancedSearchPopup";
+import { Input } from "antd";
+import { Search, SlidersHorizontal } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Popover } from "antd";
+
+export default function SearchBar() {
+    const [keyword, setKeyword] = useState("");
+
+    useEffect(() => {
+        console.log(keyword)
+    }, [keyword]);
+
+    return (
+        <div className="grow flex rounded-full bg-white text-black">
+            <div className="grow pl-3 pr-0 py-1 flex items-center">
+                <Search />
+                <Input
+                    placeholder="Tìm kiếm"
+                    variant="borderless"
+                    onChange={(e) => setKeyword(e.target.value)}
+                />
+            </div>
+            <Popover
+                trigger="click"
+                placement="bottom"
+                content={
+                    <AdvancedSearchPopup/>
+                }
+                className="w-full h-full"
+                id="searchBar-advancedSearch"
+                align={{ offset: [0, 0] }}
+            >
+                <button
+                    className="px-3 text-gray-subtitle duration-200 hover:text-black"
+                >
+                    <SlidersHorizontal size={18}/>
+                </button>
+            </Popover>
+            <div className="min-h-full flex justify-center items-center border-l rounded-e-full bg-orange-sunset text-white">
+                <button className="w-full h-full py-1 px-5 flex gap-2 justify-center items-center font-semibold rounded-r-full">
+                    <span>Tìm kiếm</span>
+                </button>
+            </div>
+        </div>
+    )
+}

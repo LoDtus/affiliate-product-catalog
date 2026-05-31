@@ -1,0 +1,74 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+}
+
+@theme {
+    --color-white-cream: #feeecc;
+    --color-white-tofu: #faf5ee;
+
+    --color-blue-legacy: #002244;
+    --color-blue-deep: #0A2472;
+    --color-blue-royal: #10367d;
+    --color-blue-soft: #4AB0D9;
+    --color-blue-ice: #B3E5FC;
+
+    --color-orange-sunset: #FF6B35;
+    --color-orange-juice: #EF5F18;
+
+    --color-red-ruby: #A6171C;
+    --color-red-impact: #C60C30;
+    --color-red-rouge: #d52122;
+    --color-red-tomato: #FE4A49;
+
+    --color-gray-line: #d2d2d2;
+    --color-gray-subtitle: #8f8f8f;
+    --color-gray-disable: #8f8f8f;
+    --color-gray-placeholder: #929292;
+    --color-gray-input: #f2f2f2;
+    --color-light-gray: #ebebeb;
+    --color-gray-light-button: #e5e5e0;
+    --color-gray-light-hover: #dadad3;
+    
+    --color-green-matcha: #023820;
+    --color-yellow-yolk: #f8a21b;
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --font-sans: var(--font-geist-sans);
+    --font-mono: var(--font-geist-mono);
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
+}
+
+html, body {
+    height: 100%;
+    overflow-y: auto;
+}
+
+button {
+    transition-duration: 200ms;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:active {
+    scale: 98%;
+}
+
+.ant-dropdown-menu-item:not(:first-child) {
+    margin-top: 2px !important;
+}
