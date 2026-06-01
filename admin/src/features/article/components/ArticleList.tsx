@@ -1,20 +1,13 @@
 // stt, title, type, slug, priority, products, stats, isHIdden, publishedAt
-
-import "../article.css";
 import { MaterialReactTable } from "material-react-table";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Button } from "antd";
-import { UserRoundPlus } from "lucide-react";
-import {
-    ArchiveArticle,
-    GenerateArticle,
-    ProductList,
-} from "@/features/article/components/ArticleToolbar";
+import { ProductList } from "@/features/article/components/ArticleToolbar";
 
 export default function ArticleList() {
     const hideArticle = async (id: any) => {
-        console.log(id)
-    }
+        console.log(id);
+    };
 
     const columns = [
         {
@@ -58,6 +51,9 @@ export default function ArticleList() {
         {
             accessorKey: "priority",
             header: "Ưu tiên",
+            size: 10,
+            minSize: 10,
+            maxSize: 30,
             muiTableHeadCellProps: {
                 align: "center",
                 sx: { justifyContent: "center" },
@@ -104,32 +100,6 @@ export default function ArticleList() {
             Cell: ({ row }) => <ProductList data={row?.original} />,
         },
         {
-            accessorKey: "hide",
-            header: "Ẩn bài viết",
-            size: 30,
-            minSize: 30,
-            maxSize: 50,
-            enableSorting: false,
-            enableColumnActions: false,
-            enableColumnDragging: false,
-            muiTableHeadCellProps: {
-                align: "center",
-                sx: { justifyContent: "center" },
-            },
-            muiTableBodyCellProps: {
-                align: "center",
-                sx: { justifyContent: "center", textAlign: "center" },
-            },
-            Cell: ({ row }) => <Button
-                className="font-semibold!"
-                onClick={() => hideArticle(row?.original)}
-                variant="solid"
-                color="default"
-            >
-                Ẩn
-            </Button>,
-        },
-        {
             accessorKey: "publishedAt",
             header: "Ngày xuất bản",
             size: 20,
@@ -147,6 +117,34 @@ export default function ArticleList() {
                 sx: { justifyContent: "center", textAlign: "center" },
             },
         },
+        {
+            accessorKey: "hide",
+            header: "Ẩn bài viết",
+            size: 30,
+            minSize: 30,
+            maxSize: 50,
+            enableSorting: false,
+            enableColumnActions: false,
+            enableColumnDragging: false,
+            muiTableHeadCellProps: {
+                align: "center",
+                sx: { justifyContent: "center" },
+            },
+            muiTableBodyCellProps: {
+                align: "center",
+                sx: { justifyContent: "center", textAlign: "center" },
+            },
+            Cell: ({ row }) => (
+                <Button
+                    className="font-semibold!"
+                    onClick={() => hideArticle(row?.original)}
+                    variant="solid"
+                    color="default"
+                >
+                    Ẩn
+                </Button>
+            ),
+        },
     ];
 
     const rowData = [
@@ -159,6 +157,87 @@ export default function ArticleList() {
             stats: "Kế toán",
             publishedAt: "01-05-2026",
         },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
     ];
 
     useEffect(() => {
@@ -171,46 +250,55 @@ export default function ArticleList() {
 
     return (
         <div
-            className="h-full flex flex-col border border-gray-line rounded-sm overflow-y-auto"
+            className="h-full flex flex-col border border-gray-line rounded-sm overflow-hidden" // Thêm h-full, đổi sang overflow-hidden
             style={{
                 maxHeight: "calc(100vh - 52px)",
             }}
         >
-            <div className="flex-1 flex flex-col">
+            {/* min-h-0 giúp flex-child biết giới hạn để không tự phình to */}
+            <div className="flex-1 flex flex-col min-h-0">
                 <MaterialReactTable
                     columns={columns}
                     data={rowData || []}
                     enableColumnOrdering
-                    enableDensityToggle={false} // Tắt 'Toggle Density'
-                    initialState={{ density: "compact" }} // Set mặc định 'Toggle Density'
-                    enableFullScreenToggle={false} // Tắt 'Toggle Full Screen'
-                    muiTableBodyCellProps={({ cell }) => ({
-                        sx: {
-                            backgroundColor:
-                                cell.column.id === "username"
-                                    ? "#f0f0f0"
-                                    : "white",
-                        },
-                    })}
+                    enableDensityToggle={false}
+                    initialState={{ density: "compact" }}
+                    enableFullScreenToggle={false}
                     enableGlobalFilter={false}
                     getRowId={(row) => row.no.toString()}
-                    renderDetailPanel={({ row }) => {
-                        return (
-                            <div className="p-3 bg-gray-100 rounded-lg">
-                                Đây là DIV mở rộng cho row {row.id}
-                            </div>
-                        );
+                    // 1. QUAY LẠI CHẾ ĐỘ SEMANTIC (Mặc định của HTML Table)
+                    // Chế độ này sẽ giữ nguyên kích thước 'size' của cột và tự động đẩy tràn ra ngoài nếu thiếu đất
+                    layoutMode="semantic"
+                    // 2. KHÓA CHẶT CHIỀU CAO CONTAINER VỚI ĐỘ TRỪ HAO RỘNG RÃI
+                    muiTableContainerProps={{
+                        sx: {
+                            // Ép vùng chứa table có chiều cao tối đa cố định
+                            // Trừ đi 200px (cho header trang, navlink, và bộ toolbar của table)
+                            // Đảm bảo thanh scroll ngang (nếu có) nằm lơ lửng cách đáy Outlet một khoảng an toàn
+                            maxHeight: "calc(100vh - 200px)",
+                            overflow: "auto", // Cho phép tự do scroll cả X lẫn Y nội bộ
+                        },
                     }}
+                    // 3. ĐẢM BẢO KHỐI GIẤY BỌC NGOÀI KHÔNG TỰ CO GIÃN THEO TRÌNH DUYỆT
+                    muiPaperProps={{
+                        sx: {
+                            height: "100%",
+                            maxHeight: "100%",
+                            display: "flex",
+                            flexDirection: "column",
+                        },
+                    }}
+                    renderDetailPanel={({ row }) => (
+                        <div className="p-3 bg-gray-100 rounded-lg">
+                            Đây là DIV mở rộng cho row {row.id}
+                        </div>
+                    )}
                     enableExpanding
                     enableExpandAll={false}
                     displayColumnDefOptions={{
                         "mrt-row-expand": {
-                            muiTableHeadCellProps: {
-                                sx: { display: "none" }, // Ẩn header mũi tên
-                            },
-                            muiTableBodyCellProps: {
-                                sx: { display: "none" }, // Ẩn ô mũi tên ở mỗi row
-                            },
+                            muiTableHeadCellProps: { sx: { display: "none" } },
+                            muiTableBodyCellProps: { sx: { display: "none" } },
                         },
                     }}
                 />

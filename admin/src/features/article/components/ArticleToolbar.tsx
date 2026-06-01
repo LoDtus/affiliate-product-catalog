@@ -38,7 +38,11 @@ export function ProductList({ data }) {
                         key={itemIndex}
                         className="pt-1 pb-0.5 px-2 rounded-sm bg-gray-input line-clamp-2"
                     >
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis officiis quis tenetur molestias qui inventore fuga ducimus, voluptatem, facilis eaque unde consequuntur ea, et deserunt? Repudiandae fugit nisi quod est?
+                        Lorem ipsum dolor sit, amet consectetur adipisicing
+                        elit. Reiciendis officiis quis tenetur molestias qui
+                        inventore fuga ducimus, voluptatem, facilis eaque unde
+                        consequuntur ea, et deserunt? Repudiandae fugit nisi
+                        quod est?
                     </li>
                 ))}
             </ul>

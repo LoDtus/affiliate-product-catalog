@@ -1,4 +1,3 @@
-import "../article.css";
 import { MaterialReactTable } from "material-react-table";
 import { useEffect, useState } from "react";
 import { Button } from "antd";
