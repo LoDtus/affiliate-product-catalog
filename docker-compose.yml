@@ -1,0 +1,92 @@
+version: '3.8'
+
+services:
+  # 1. DATABASE MONGO
+  mongodb-standard:
+    image: mongo:7.0
+    container_name: mongodb-standard-container
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpw
+    ports:
+      - "27018:27017"
+    volumes:
+      - custom_data:/data/db
+
+  # 2. TỰ ĐỘNG CHẠY SEED DATA (Sử dụng script shell có sẵn trong project)
+  mongo-seed:
+    image: mongo:7.0
+    container_name: mongo-seed-container
+    volumes:
+      - ./data:/data
+    # Đợi mongo khởi động xong -> dùng mongosh chạy các file schema .js tuần tự
+    entrypoint: >
+      bash -c "
+        echo 'Waiting for mongodb...'
+        until mongosh --host mongodb-standard:27017 -u root -p rootpw --eval 'db.runCommand({ping:1})' &>/dev/null; do
+          sleep 2
+        done
+        echo 'MongoDB is up! Starting seed...'
+        for file in $(ls /data/schemas/*.js | sort); do
+          echo 'Running script: ' $$file
+          mongosh mongodb://root:rootpw@mongodb-standard:27017/affiliate-product-catalog?authSource=admin --file $$file --quiet
+        done
+        echo 'Finish seed data!'
+      "
+    depends_on:
+      - mongodb-standard
+
+  # 3. BACKEND (NESTJS)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: nestjs-backend-container
+    ports:
+      - "3001:3000" # Đổi cổng ngoài thành 3001 nếu trùng với NextJS
+    environment:
+      # LƯU Ý: Trong môi trường Docker, thay 'localhost' bằng tên service 'mongodb-standard'
+      MONGO_URI: mongodb://root:rootpw@mongodb-standard:27017/affiliate-product-catalog?authSource=admin
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb-standard
+    restart: unless-stopped
+
+  # 4. FRONTEND (NEXTJS)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: nextjs-frontend-container
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - /app/.next
+    depends_on:
+      - backend
+
+  # 5. ADMIN (REACT + VITE)
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    container_name: react-admin-container
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: http://localhost:3001
+    volumes:
+      - ./admin:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+volumes:
+  custom_data:
