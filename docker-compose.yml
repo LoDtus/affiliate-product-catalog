@@ -2,35 +2,35 @@ version: '3.8'
 
 services:
   # 1. DATABASE MONGO
-  mongodb-standard:
+  mongodb:
     image: mongo:7.0
-    container_name: mongodb-standard-container
+    container_name: apc-mongodb-container
     restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpw
     ports:
-      - "27018:27017"
+      - "9265:9265"
     volumes:
       - custom_data:/data/db
 
   # 2. TỰ ĐỘNG CHẠY SEED DATA (Sử dụng script shell có sẵn trong project)
-  mongo-seed:
+  mongodb-seed:
     image: mongo:7.0
-    container_name: mongo-seed-container
+    container_name: apc-mongodb-seed-container
     volumes:
       - ./data:/data
     # Đợi mongo khởi động xong -> dùng mongosh chạy các file schema .js tuần tự
     entrypoint: >
       bash -c "
         echo 'Waiting for mongodb...'
-        until mongosh --host mongodb-standard:27017 -u root -p rootpw --eval 'db.runCommand({ping:1})' &>/dev/null; do
+        until mongosh --host mongodb-standard:9265 -u root -p rootpw --eval 'db.runCommand({ping:1})' &>/dev/null; do
           sleep 2
         done
         echo 'MongoDB is up! Starting seed...'
         for file in $(ls /data/schemas/*.js | sort); do
           echo 'Running script: ' $$file
-          mongosh mongodb://root:rootpw@mongodb-standard:27017/affiliate-product-catalog?authSource=admin --file $$file --quiet
+          mongosh mongodb://root:rootpw@mongodb:9265/affiliate-product-catalog?authSource=admin --file $$file --quiet
         done
         echo 'Finish seed data!'
       "
@@ -42,12 +42,12 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: nestjs-backend-container
+    container_name: apc-backend-container
     ports:
-      - "3001:3000" # Đổi cổng ngoài thành 3001 nếu trùng với NextJS
+      - "9270:9270"
     environment:
       # LƯU Ý: Trong môi trường Docker, thay 'localhost' bằng tên service 'mongodb-standard'
-      MONGO_URI: mongodb://root:rootpw@mongodb-standard:27017/affiliate-product-catalog?authSource=admin
+      MONGO_URI: mongodb://root:rootpw@mongodb-standard:9265/affiliate-product-catalog?authSource=admin
     volumes:
       - ./backend:/app
       - /app/node_modules
@@ -60,11 +60,11 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: nextjs-frontend-container
+    container_name: apc-frontend-container
     ports:
-      - "3000:3000"
+      - "9260:9260"
     environment:
-      NEXT_PUBLIC_API_URL: http://localhost:3001
+      NEXT_PUBLIC_API_URL: http://localhost:9260
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -77,11 +77,11 @@ services:
     build:
       context: ./admin
       dockerfile: Dockerfile
-    container_name: react-admin-container
+    container_name: apc-admin-container
     ports:
-      - "5173:5173"
+      - "9261:9261"
     environment:
-      VITE_API_URL: http://localhost:3001
+      VITE_API_URL: http://localhost:9261
     volumes:
       - ./admin:/app
       - /app/node_modules
