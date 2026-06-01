@@ -250,13 +250,11 @@ export default function ArticleList() {
 
     return (
         <div
-            className="h-full flex flex-col border border-gray-line rounded-sm overflow-hidden" // Thêm h-full, đổi sang overflow-hidden
-            style={{
-                maxHeight: "calc(100vh - 52px)",
-            }}
+            className="h-full flex flex-col overflow-x-auto"
+            style={{ maxHeight: "calc(100vh - 52px)" }}
         >
             {/* min-h-0 giúp flex-child biết giới hạn để không tự phình to */}
-            <div className="flex-1 flex flex-col min-h-0">
+            <div className="border rounded-md border-gray-line overflow-hidden">
                 <MaterialReactTable
                     columns={columns}
                     data={rowData || []}
@@ -269,14 +267,17 @@ export default function ArticleList() {
                     // 1. QUAY LẠI CHẾ ĐỘ SEMANTIC (Mặc định của HTML Table)
                     // Chế độ này sẽ giữ nguyên kích thước 'size' của cột và tự động đẩy tràn ra ngoài nếu thiếu đất
                     layoutMode="semantic"
+                    muiTableProps={{
+                        sx: {
+                            borderTop: "1px solid #e0e0e0", // Border bao quanh bảng
+                        },
+                    }}
                     // 2. KHÓA CHẶT CHIỀU CAO CONTAINER VỚI ĐỘ TRỪ HAO RỘNG RÃI
                     muiTableContainerProps={{
                         sx: {
-                            // Ép vùng chứa table có chiều cao tối đa cố định
-                            // Trừ đi 200px (cho header trang, navlink, và bộ toolbar của table)
-                            // Đảm bảo thanh scroll ngang (nếu có) nằm lơ lửng cách đáy Outlet một khoảng an toàn
                             maxHeight: "calc(100vh - 200px)",
-                            overflow: "auto", // Cho phép tự do scroll cả X lẫn Y nội bộ
+                            overflowX: "visible", // Cho bảng tràn ra ngoài thay vì scroll nội bộ
+                            overflowY: "auto", // Giữ scroll dọc nội bộ nếu nhiều row
                         },
                     }}
                     // 3. ĐẢM BẢO KHỐI GIẤY BỌC NGOÀI KHÔNG TỰ CO GIÃN THEO TRÌNH DUYỆT
@@ -286,6 +287,7 @@ export default function ArticleList() {
                             maxHeight: "100%",
                             display: "flex",
                             flexDirection: "column",
+                            overflow: "visible", // ← Thêm dòng này để Paper không clip nội dung
                         },
                     }}
                     renderDetailPanel={({ row }) => (

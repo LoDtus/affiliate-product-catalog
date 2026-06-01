@@ -36,7 +36,8 @@ export function ProductList({ data }) {
                 {visibleProducts.map((item, itemIndex) => (
                     <li
                         key={itemIndex}
-                        className="pt-1 pb-0.5 px-2 rounded-sm bg-gray-input line-clamp-2"
+                        className="pt-1 pb-0.5 px-2 rounded-sm bg-gray-input 
+                            overflow-hidden line-clamp-2 break-all min-w-0"
                     >
                         Lorem ipsum dolor sit, amet consectetur adipisicing
                         elit. Reiciendis officiis quis tenetur molestias qui

@@ -7,7 +7,7 @@ export default function AppLayout() {
         <div className="h-screen w-screen flex flex-col overflow-y-hidden">
             <div className="flex-1 flex">
                 <NavigationBar />
-                <div className="w-full max-h-[95vh] border">
+                <div className="w-full">
                     <Outlet />
                 </div>
             </div>

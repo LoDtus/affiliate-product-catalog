@@ -60,9 +60,12 @@ export default function RecommendedArticle() {
             maxSize: 300,
             muiTableBodyCellProps: {
                 sx: {
+                    minWidth: 200,
                     maxWidth: 300,
-                    width: 300,
-                    overflow: "hidden",
+                    width: 250,
+                    overflow: "hidden", // ← bắt buộc
+                    whiteSpace: "normal", // ← cho phép xuống dòng
+                    wordBreak: "break-word", // ← ngắt từ khi quá dài
                 },
             },
             Cell: ({ row }) => <ProductList data={row?.original} />,
@@ -162,10 +165,8 @@ export default function RecommendedArticle() {
 
     return (
         <div
-            className="h-full flex flex-col border border-gray-line rounded-sm overflow-y-auto"
-            style={{
-                maxHeight: "calc(100vh - 52px)",
-            }}
+            className="h-full flex flex-col border border-gray-line rounded-sm overflow-x-auto"
+            style={{ maxHeight: "calc(100vh - 52px)" }}
         >
             <div className="flex-1 flex flex-col">
                 <MaterialReactTable
@@ -202,6 +203,18 @@ export default function RecommendedArticle() {
                             muiTableBodyCellProps: {
                                 sx: { display: "none" }, // Ẩn ô mũi tên ở mỗi row
                             },
+                        },
+                    }}
+                    muiTableContainerProps={{
+                        sx: {
+                            overflowX: "visible",
+                            overflowY: "auto",
+                            maxHeight: "calc(100vh - 200px)",
+                        },
+                    }}
+                    muiPaperProps={{
+                        sx: {
+                            overflow: "visible",
                         },
                     }}
                 />
