@@ -1,223 +1,138 @@
-import { MaterialReactTable } from "material-react-table";
-import { useEffect, useState } from "react";
 import { Button } from "antd";
-import { UserRoundPlus } from "lucide-react";
-import {
-    ArchiveArticle,
-    GenerateArticle,
-    ProductList,
-} from "@/features/article/components/ArticleToolbar";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-// STT, loại bài viết, tiêu đề, sản phẩm đề cập, tạo tự động, lưu trữ,
 export default function RecommendedArticle() {
-    const columns = [
-        {
-            accessorKey: "no",
-            header: "STT",
-            size: 10,
-            minSize: 10,
-            maxSize: 30,
-            enableSorting: false,
-            enableColumnActions: false,
-            enableColumnDragging: false,
-            muiTableHeadCellProps: {
-                align: "center",
-                sx: { justifyContent: "center" },
-            },
-            muiTableBodyCellProps: {
-                align: "center",
-                sx: { justifyContent: "center", textAlign: "center" },
-            },
-        },
-        {
-            accessorKey: "type",
-            header: "Phân loại",
-            muiTableHeadCellProps: {
-                align: "center",
-                sx: { justifyContent: "center" },
-            },
-            muiTableBodyCellProps: {
-                align: "center",
-                sx: { justifyContent: "center", textAlign: "center" },
-            },
-        },
-        {
-            accessorKey: "title",
-            header: "Tiêu đề",
-            muiTableHeadCellProps: {
-                align: "center",
-                sx: { justifyContent: "center" },
-            },
-        },
-        {
-            accessorKey: "products",
-            header: "Sản phẩm",
-            muiTableHeadCellProps: {
-                align: "center",
-                sx: { justifyContent: "center" },
-            },
-            size: 250,
-            maxSize: 300,
-            muiTableBodyCellProps: {
-                sx: {
-                    minWidth: 200,
-                    maxWidth: 300,
-                    width: 250,
-                    overflow: "hidden", // ← bắt buộc
-                    whiteSpace: "normal", // ← cho phép xuống dòng
-                    wordBreak: "break-word", // ← ngắt từ khi quá dài
-                },
-            },
-            Cell: ({ row }) => <ProductList data={row?.original} />,
-        },
-        {
-            accessorKey: "generate",
-            header: "Tạo tự động",
-            size: 30,
-            minSize: 30,
-            maxSize: 50,
-            enableSorting: false,
-            enableColumnActions: false,
-            enableColumnDragging: false,
-            muiTableHeadCellProps: {
-                align: "center",
-                sx: { justifyContent: "center" },
-            },
-            muiTableBodyCellProps: {
-                align: "center",
-                sx: { justifyContent: "center", textAlign: "center" },
-            },
-            Cell: ({ row }) => <GenerateArticle data={row?.original} />,
-        },
-        {
-            accessorKey: "archive",
-            header: "Lưu trữ",
-            size: 20,
-            minSize: 20,
-            maxSize: 30,
-            enableSorting: false,
-            enableColumnActions: false,
-            enableColumnDragging: false,
-            muiTableHeadCellProps: {
-                align: "center",
-                sx: { justifyContent: "center" },
-            },
-            muiTableBodyCellProps: {
-                align: "center",
-                sx: { justifyContent: "center", textAlign: "center" },
-            },
-            Cell: ({ row }) => <ArchiveArticle data={row?.original} />,
-        },
-    ];
+    const arr = Array.from({ length: 20 });
+    const products = Array.from({ length: 10 });
+    const [expandedRows, setExpandedRows] = useState({});
 
-    const rowData = [
-        {
-            no: 1,
-            type: "So sánh",
-            title: "Bài viết 1",
-            products: "Kế toán",
-        },
-        {
-            no: 2,
-            type: "Kiến thức",
-            title: "Bài viết 2",
-            products: "Nhân sự",
-        },
-        {
-            no: 2,
-            type: "Kiến thức",
-            title: "Bài viết 2",
-            products: "Nhân sự",
-        },
-        {
-            no: 2,
-            type: "Kiến thức",
-            title: "Bài viết 2",
-            products: "Nhân sự",
-        },
-        {
-            no: 2,
-            type: "Kiến thức",
-            title: "Bài viết 2",
-            products: "Nhân sự",
-        },
-        {
-            no: 2,
-            type: "Kiến thức",
-            title: "Bài viết 2",
-            products: "Nhân sự",
-        },
-        {
-            no: 2,
-            type: "Kiến thức",
-            title: "Bài viết 2",
-            products: "Nhân sự",
-        },
-    ];
+    const toggleExpand = (index) => {
+        setExpandedRows((prev) => ({
+            ...prev,
+            [index]: !prev[index], // Đảo ngược trạng thái đóng/mở của hàng đó
+        }));
+    };
 
-    useEffect(() => {
-        const startGetUsers = async () => {
-            // const response = await handleGetUsers();
-            // console.log(response);
-        };
-        startGetUsers();
-    }, []);
-
+    // compare, education, ranking, description
     return (
-        <div
-            className="h-full flex flex-col border border-gray-line rounded-sm overflow-x-auto"
-            style={{ maxHeight: "calc(100vh - 52px)" }}
-        >
-            <div className="flex-1 flex flex-col">
-                <MaterialReactTable
-                    columns={columns}
-                    data={rowData || []}
-                    enableColumnOrdering
-                    enableDensityToggle={false} // Tắt 'Toggle Density'
-                    initialState={{ density: "compact" }} // Set mặc định 'Toggle Density'
-                    enableFullScreenToggle={false} // Tắt 'Toggle Full Screen'
-                    muiTableBodyCellProps={({ cell }) => ({
-                        sx: {
-                            backgroundColor:
-                                cell.column.id === "username"
-                                    ? "#f0f0f0"
-                                    : "white",
-                        },
-                    })}
-                    enableGlobalFilter={false}
-                    getRowId={(row) => row.no.toString()}
-                    renderDetailPanel={({ row }) => {
-                        return (
-                            <div className="p-3 bg-gray-100 rounded-lg">
-                                Đây là DIV mở rộng cho row {row.id}
+        <div className="h-full">
+            <div className="mb-2 flex items-center border border-gray-line rounded-sm overflow-hidden">
+                <div className="basis-[3%] flex justify-center items-center font-semibold border-r border-gray-line">
+                    STT
+                </div>
+                <div className="basis-[10%] flex justify-center items-center font-semibold border-r border-gray-line">
+                    Phân loại
+                </div>
+                <div className="basis-[25%] flex justify-center items-center font-semibold border-r border-gray-line">
+                    Tiêu đề
+                </div>
+                <div className="basis-[44%] flex justify-center items-center font-semibold border-r border-gray-line">
+                    Sản phẩm
+                </div>
+                <div className="basis-[10%] flex justify-center items-center font-semibold border-r border-gray-line">
+                    Tạo tự động
+                </div>
+                <div className="basis-[8%] flex justify-center items-center font-semibold">
+                    Lưu trữ
+                </div>
+            </div>
+
+            <div className="border border-gray-line rounded-sm overflow-hidden">
+                {arr?.map((article, articleIndex) => {
+                    const isExpanded = !!expandedRows[articleIndex];
+                    return (
+                        <div
+                            key={articleIndex}
+                            className={`py-0.5 flex items-center
+                                ${articleIndex > 0 && "border-t border-gray-line"}
+                            `}
+                        >
+                            <div className="basis-[3%] flex justify-center items-center">
+                                {articleIndex + 1}
                             </div>
-                        );
-                    }}
-                    enableExpanding
-                    enableExpandAll={false}
-                    displayColumnDefOptions={{
-                        "mrt-row-expand": {
-                            muiTableHeadCellProps: {
-                                sx: { display: "none" }, // Ẩn header mũi tên
-                            },
-                            muiTableBodyCellProps: {
-                                sx: { display: "none" }, // Ẩn ô mũi tên ở mỗi row
-                            },
-                        },
-                    }}
-                    muiTableContainerProps={{
-                        sx: {
-                            overflowX: "visible",
-                            overflowY: "auto",
-                            maxHeight: "calc(100vh - 200px)",
-                        },
-                    }}
-                    muiPaperProps={{
-                        sx: {
-                            overflow: "visible",
-                        },
-                    }}
-                />
+                            <div className="basis-[10%] flex justify-center items-center">
+                                So sánh
+                            </div>
+                            <Link
+                                className="basis-[25%] px-2 font-semibold line-clamp-3
+                                    duration-200 transition-all hover:text-blue-royal hover:underline active:scale-98
+                                "
+                                to="/article/id/123"
+                            >
+                                Lorem ipsum dolor, sit amet consectetur
+                                adipisicing elit. Laborum nostrum fuga ea,
+                                facere eligendi sequi consequuntur nulla eaque,
+                                minus blanditiis et iusto in officiis voluptates
+                                illo numquam laudantium placeat error!
+                            </Link>
+                            <div className="basis-[44%] p-1">
+                                {products?.map((product, productIndex) => {
+                                    // Điều kiện CSS: Nếu chỉ mục >= 3 VÀ hàng đó chưa bấm mở rộng thì thêm class "hidden" để ẩn bằng CSS
+                                    const isHidden =
+                                        productIndex >= 3 && !isExpanded;
+
+                                    return (
+                                        <Link
+                                            key={productIndex}
+                                            to="#"
+                                            className={`py-0.5 px-2 rounded-sm bg-gray-input
+                                                duration-200 transition-all hover:bg-gray-light-hover active:scale-98
+                                                ${productIndex > 0 && "mt-1"}
+                                                ${isHidden ? "hidden" : "block"} 
+                                            `}
+                                        >
+                                            <span className="line-clamp-2">
+                                                Lorem ipsum dolor sit amet
+                                                consectetur adipisicing elit.
+                                                Natus cumque eum delectus
+                                                accusamus illum facere officia
+                                                necessitatibus, exercitationem
+                                                consectetur voluptas molestias
+                                                dicta molestiae ratione
+                                                reiciendis amet? Ad obcaecati
+                                                quaerat ipsa!
+                                            </span>
+                                        </Link>
+                                    );
+                                })}
+
+                                {products.length > 3 && (
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            toggleExpand(articleIndex)
+                                        }
+                                        className="mt-1 text-blue-500 hover:underline font-medium text-left px-2 self-start cursor-pointer"
+                                    >
+                                        {isExpanded
+                                            ? "Thu gọn"
+                                            : `Xem thêm ${products.length - 3} sản phẩm`}
+                                    </button>
+                                )}
+                            </div>
+                            <div className="basis-[10%] flex justify-center items-center">
+                                <Button
+                                    className="font-semibold!"
+                                    onClick={() => {}}
+                                    type="primary"
+                                >
+                                    Tạo bài viết
+                                </Button>
+                            </div>
+                            <div className="basis-[8%] flex justify-center items-center">
+                                <Button
+                                    className="font-semibold!"
+                                    onClick={() => {}}
+                                    variant="solid"
+                                    color="default"
+                                >
+                                    Lưu trữ
+                                </Button>
+                            </div>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
