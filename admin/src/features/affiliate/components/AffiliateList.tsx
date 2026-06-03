@@ -1,7 +1,368 @@
+// stt, title, type, slug, priority, products, stats, isHIdden, publishedAt
+import { MaterialReactTable } from "material-react-table";
+import { useEffect } from "react";
+import { Button, Dropdown } from "antd";
+import { ProductList } from "@/features/article/components/ArticleToolbar";
+
+const items: MenuProps["items"] = [
+    {
+        key: "1",
+        label: (
+            <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.antgroup.com"
+            >
+                1st menu item
+            </a>
+        ),
+    },
+    {
+        key: "2",
+        label: (
+            <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.aliyun.com"
+            >
+                2nd menu item
+            </a>
+        ),
+    },
+    {
+        key: "3",
+        label: (
+            <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.luohanacademy.com"
+            >
+                3rd menu item
+            </a>
+        ),
+    },
+];
+
 export default function AffiliateList() {
+    const hideArticle = async (id: any) => {
+        console.log(id);
+    };
+
+    const columns = [
+        {
+            accessorKey: "no",
+            header: "STT",
+            size: 10,
+            minSize: 10,
+            maxSize: 30,
+            enableSorting: false,
+            enableColumnActions: false,
+            enableColumnDragging: false,
+            muiTableHeadCellProps: {
+                align: "center",
+                sx: { justifyContent: "center" },
+            },
+            muiTableBodyCellProps: {
+                align: "center",
+                sx: { justifyContent: "center", textAlign: "center" },
+            },
+        },
+        {
+            accessorKey: "type",
+            header: "Phân loại",
+            muiTableHeadCellProps: {
+                align: "center",
+                sx: { justifyContent: "center" },
+            },
+            muiTableBodyCellProps: {
+                align: "center",
+                sx: { justifyContent: "center", textAlign: "center" },
+            },
+        },
+        {
+            accessorKey: "title",
+            header: "Tiêu đề",
+            muiTableHeadCellProps: {
+                align: "center",
+                sx: { justifyContent: "center" },
+            },
+        },
+        {
+            accessorKey: "priority",
+            header: "Ưu tiên",
+            size: 10,
+            minSize: 10,
+            maxSize: 30,
+            muiTableHeadCellProps: {
+                align: "center",
+                sx: { justifyContent: "center" },
+            },
+            muiTableBodyCellProps: {
+                align: "center",
+                sx: { justifyContent: "center", textAlign: "center" },
+            },
+        },
+        {
+            accessorKey: "products",
+            header: "Sản phẩm",
+            muiTableHeadCellProps: {
+                align: "center",
+                sx: { justifyContent: "center" },
+            },
+            size: 250,
+            maxSize: 300,
+            muiTableBodyCellProps: {
+                sx: {
+                    maxWidth: 300,
+                    width: 300,
+                    overflow: "hidden",
+                },
+            },
+            Cell: ({ row }) => <ProductList data={row?.original} />,
+        },
+        {
+            accessorKey: "stats",
+            header: "Chỉ số",
+            muiTableHeadCellProps: {
+                align: "center",
+                sx: { justifyContent: "center" },
+            },
+            size: 250,
+            maxSize: 300,
+            muiTableBodyCellProps: {
+                sx: {
+                    maxWidth: 300,
+                    width: 300,
+                    overflow: "hidden",
+                },
+            },
+            Cell: ({ row }) => <ProductList data={row?.original} />,
+        },
+        {
+            accessorKey: "publishedAt",
+            header: "Ngày xuất bản",
+            size: 20,
+            minSize: 20,
+            maxSize: 30,
+            enableSorting: false,
+            enableColumnActions: false,
+            enableColumnDragging: false,
+            muiTableHeadCellProps: {
+                align: "center",
+                sx: { justifyContent: "center" },
+            },
+            muiTableBodyCellProps: {
+                align: "center",
+                sx: { justifyContent: "center", textAlign: "center" },
+            },
+        },
+        {
+            accessorKey: "hide",
+            header: "Ẩn bài viết",
+            size: 30,
+            minSize: 30,
+            maxSize: 50,
+            enableSorting: false,
+            enableColumnActions: false,
+            enableColumnDragging: false,
+            muiTableHeadCellProps: {
+                align: "center",
+                sx: { justifyContent: "center" },
+            },
+            muiTableBodyCellProps: {
+                align: "center",
+                sx: { justifyContent: "center", textAlign: "center" },
+            },
+            Cell: ({ row }) => (
+                <Button
+                    className="font-semibold!"
+                    onClick={() => hideArticle(row?.original)}
+                    variant="solid"
+                    color="default"
+                >
+                    Ẩn
+                </Button>
+            ),
+        },
+    ];
+
+    const rowData = [
+        {
+            no: 1,
+            type: "So sánh",
+            title: "Bài viết 1",
+            priority: 2,
+            products: "Kế toán",
+            stats: "Kế toán",
+            publishedAt: "01-05-2026",
+        },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+        // {
+        //     no: 1,
+        //     type: "So sánh",
+        //     title: "Bài viết 1",
+        //     priority: 2,
+        //     products: "Kế toán",
+        //     stats: "Kế toán",
+        //     publishedAt: "01-05-2026",
+        // },
+    ];
+
+    useEffect(() => {
+        const startGetUsers = async () => {
+            // const response = await handleGetUsers();
+            // console.log(response);
+        };
+        startGetUsers();
+    }, []);
+
+    // stt, orginal link, aff link, original price, real price,
     return (
-        <div>
-            
+        <div
+            className="p-2 h-full flex flex-col overflow-x-auto"
+            style={{ maxHeight: "calc(100vh - 52px)" }}
+        >
+            {/* min-h-0 giúp flex-child biết giới hạn để không tự phình to */}
+            <div className="mb-2 flex gap-2">
+                <Button
+                    className="font-semibold!"
+                    type="primary"
+                    onClick={() => {}}
+                >
+                    Thêm link
+                </Button>
+                <Dropdown
+                    menu={{ items }}
+                    placement="bottomLeft"
+                    arrow
+                    trigger={["click"]}
+                >
+                    <Button>Phân loại: Tất cả</Button>
+                </Dropdown>
+            </div>
+
+            <div className="border rounded-md border-gray-line overflow-hidden">
+                <MaterialReactTable
+                    columns={columns}
+                    data={rowData || []}
+                    enableColumnOrdering
+                    enableDensityToggle={false}
+                    initialState={{ density: "compact" }}
+                    enableFullScreenToggle={false}
+                    enableGlobalFilter={false}
+                    getRowId={(row) => row.no.toString()}
+                    // 1. QUAY LẠI CHẾ ĐỘ SEMANTIC (Mặc định của HTML Table)
+                    // Chế độ này sẽ giữ nguyên kích thước 'size' của cột và tự động đẩy tràn ra ngoài nếu thiếu đất
+                    layoutMode="semantic"
+                    muiTableProps={{
+                        sx: {
+                            borderTop: "1px solid #e0e0e0", // Border bao quanh bảng
+                        },
+                    }}
+                    // 2. KHÓA CHẶT CHIỀU CAO CONTAINER VỚI ĐỘ TRỪ HAO RỘNG RÃI
+                    muiTableContainerProps={{
+                        sx: {
+                            maxHeight: "calc(100vh - 200px)",
+                            overflowX: "visible", // Cho bảng tràn ra ngoài thay vì scroll nội bộ
+                            overflowY: "auto", // Giữ scroll dọc nội bộ nếu nhiều row
+                        },
+                    }}
+                    // 3. ĐẢM BẢO KHỐI GIẤY BỌC NGOÀI KHÔNG TỰ CO GIÃN THEO TRÌNH DUYỆT
+                    muiPaperProps={{
+                        sx: {
+                            height: "100%",
+                            maxHeight: "100%",
+                            display: "flex",
+                            flexDirection: "column",
+                            overflow: "visible", // ← Thêm dòng này để Paper không clip nội dung
+                        },
+                    }}
+                    renderDetailPanel={({ row }) => (
+                        <div className="p-3 bg-gray-100 rounded-lg">
+                            Đây là DIV mở rộng cho row {row.id}
+                        </div>
+                    )}
+                    enableExpanding
+                    enableExpandAll={false}
+                    displayColumnDefOptions={{
+                        "mrt-row-expand": {
+                            muiTableHeadCellProps: { sx: { display: "none" } },
+                            muiTableBodyCellProps: { sx: { display: "none" } },
+                        },
+                    }}
+                />
+            </div>
         </div>
-    )
+    );
 }
