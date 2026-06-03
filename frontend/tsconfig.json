@@ -20,10 +20,16 @@
         ],
         "paths": {
             "@/*": ["./src/*"]
-        }
+        },
+
+        "noUnusedLocals": true, // Báo lỗi khi biến khai báo xong để đấy
+        "noUnusedParameters": true, // Báo lỗi khi tham số của hàm không được dùng
+        "noImplicitReturns": true, // Ép tất cả các nhánh logic của hàm phải return chuẩn
+        "exactOptionalPropertyTypes": true, // Kiểm soát chặt kiểu dữ liệu tùy chọn (optional)
     },
     "include": [
         "next-env.d.ts",
+        "next.config.ts",
         "**/*.ts",
         "**/*.tsx",
         ".next/types/**/*.ts",
