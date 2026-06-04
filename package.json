@@ -1,0 +1,25 @@
+{
+    "name": "affiliate-product-catalog",
+    "version": "1.0.0",
+    "description": "Affiliate Product Catalog (APC)",
+    "keywords": [
+        "apc",
+        "affiliate-product-catalog",
+        "nguyentrunglong"
+    ],
+    "homepage": "https://github.com/LoDtus/affiliate-product-catalog#readme",
+    "bugs": {
+        "url": "https://github.com/LoDtus/affiliate-product-catalog/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/LoDtus/affiliate-product-catalog.git"
+    },
+    "license": "ISC",
+    "author": "nguyentrunglong",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    }
+}
