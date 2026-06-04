@@ -1,28 +1,51 @@
-# Dependency directories
+# 1. Các thư mục build hệ thống và cache
+# Ngăn Docker copy cache cũ từ máy thật vào làm sai lệch bản build mới
 node_modules/
-
-# Next.js build output (Rất nặng, bắt buộc phải bỏ qua khi build)
 .next/
 out/
 build/
+dist/
+.turbo/
+.cache/
+.eslintcache
 
-# Debug logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# 2. Biến môi trường
+# Cho phép giữ lại các file .env để phục vụ build/dev trong container bằng env-cmd.
+*.env.local
+*.env.test.local
+*.env.development.local
+*.env.production.local
+.env.production
+!.env.example
 
-# OS & IDE metadata
-.DS_Store
+# 3. File rác của Hệ điều hành và IDE
+# Giúp image nhẹ hơn, không mất công copy những file không phục vụ chạy code
 .vscode/
 .idea/
-.git/
-.gitignore
+.history/
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+Ehthumbs.db
+Desktop.ini
+*.bak
+*.orig
+*.swp
+*.swo
 
-# Environment files
-.env
-.env.local
-.env.production
-.env.development
-
-# Testing
+# 4. Logs và Testing / Mock dữ liệu
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
 coverage/
+test-results/
+
+# 5. Các định dạng file văn bản, tài liệu không cần cho runtime
+*.txt
+*.xlsx
+*.xls
+*.csv
+*.md

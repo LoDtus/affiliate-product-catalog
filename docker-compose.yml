@@ -54,23 +54,34 @@ services:
     depends_on:
       - mongodb-standard
     restart: unless-stopped
-
-  # 4. FRONTEND (NEXTJS)
-  frontend:
+  frontend-dev: # Môi trường Dev cho Frontend
+    container_name: apc-frontend-dev-container
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: apc-frontend-container
+      target: development # Chỉ định dừng lại ở tầng development trong Dockerfile
     ports:
       - "9260:9260"
-    environment:
-      NEXT_PUBLIC_API_URL: http://localhost:9260
+    env_file: # Tự động nạp toàn bộ biến từ file .env.development vào hệ thống
+      - ./frontend/.env.development
     volumes:
-      - ./frontend:/app
-      - /app/node_modules
-      - /app/.next
-    depends_on:
-      - backend
+      - ./frontend:/app # Đồng bộ code để hot-reload
+      - /app/node_modules # Giữ node_modules độc lập trong container, tránh xung đột cấu hình máy thật
+      - /app/.next # Giữ cache Next.js độc lập để tăng tốc độ tải trang lúc dev
+    restart: unless-stopped
+
+  # Lệnh chạy: docker compose up frontend-prod --build -d
+  frontend-prod: # Môi trường Product cho Frontend
+    container_name: apc-frontend-prod-container
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: production # Bỏ qua stage 2, chạy các stage còn lại
+    ports:
+      - "9260:9260"
+    env_file:
+      - ./frontend/.env.production # Tự động nạp toàn bộ biến từ file .env.production vào hệ thống
+    restart: unless-stopped
 
   # 5. ADMIN (REACT + VITE)
   admin:

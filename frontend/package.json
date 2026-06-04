@@ -4,8 +4,13 @@
     "private": true,
     "scripts": {
         "dev": "env-cmd -f .env.development next dev",
-        "build": "next build",
         "start": "env-cmd -f .env.production next start",
+        "build": "next build",
+
+        "docker:dev": "next dev",
+        "docker:start": "next start",
+        "docker:build": "next build",
+        
         "lint": "eslint"
     },
     "dependencies": {
