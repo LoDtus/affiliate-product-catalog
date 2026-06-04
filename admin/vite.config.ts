@@ -57,6 +57,9 @@ export default defineConfig(({ mode }) => {
                     changeOrigin: true,
                 },
             },
+            watch: {
+                usePolling: true, // Ép Vite liên tục quét file, sửa lỗi Docker không kích hoạt được hot reload trên một số máy Linux/Windows
+            },
         },
 
         // Cấu hình cho lệnh `npm run preview` (Kiểm tra thử bản build Production ở local)

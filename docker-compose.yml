@@ -54,6 +54,7 @@ services:
     depends_on:
       - mongodb-standard
     restart: unless-stopped
+
   frontend-dev: # Môi trường Dev cho Frontend
     container_name: apc-frontend-dev-container
     build:
@@ -69,8 +70,9 @@ services:
       - /app/node_modules # Giữ node_modules độc lập trong container, tránh xung đột cấu hình máy thật
       - /app/.next # Giữ cache Next.js độc lập để tăng tốc độ tải trang lúc dev
     restart: unless-stopped
+    depends_on:
+      - backend
 
-  # Lệnh chạy: docker compose up frontend-prod --build -d
   frontend-prod: # Môi trường Product cho Frontend
     container_name: apc-frontend-prod-container
     build:
@@ -81,21 +83,39 @@ services:
       - "9260:9260"
     env_file:
       - ./frontend/.env.production # Tự động nạp toàn bộ biến từ file .env.production vào hệ thống
-    restart: unless-stopped
+    restart: always
+    depends_on:
+      - backend
 
-  # 5. ADMIN (REACT + VITE)
-  admin:
+  admin-dev:
+    container_name: apc-admin-dev-container
     build:
       context: ./admin
       dockerfile: Dockerfile
-    container_name: apc-admin-container
+      target: development
     ports:
       - "9261:9261"
-    environment:
-      VITE_API_URL: http://localhost:9261
+    env_file:
+      - .env.development
     volumes:
-      - ./admin:/app
-      - /app/node_modules
+      - .:/app # Đồng bộ code từ máy thật vào container để hot-reload
+      - /app/node_modules # Giữ node_modules độc lập trong container, tránh xung đột
+      - /app/.vite_cache # Giữ cache Vite độc lập để tăng tốc độ compile
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+  admin-prod:
+    container_name: apc-admin-prod-container
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+      target: production 
+    ports:
+      - "9261:80"
+    env_file:
+      - .env.production
+    restart: always
     depends_on:
       - backend
 

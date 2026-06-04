@@ -4,10 +4,12 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev": "env-cmd -f .env.development vite",
         "build": "tsc -b && vite build",
-        "lint": "eslint .",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "docker:dev": "vite --host 0.0.0.0 --port 9261",
+        "docker:build": "tsc -b && vite build",
+        "lint": "eslint ."
     },
     "dependencies": {
         "@mui/icons-material": "^9.0.1",
@@ -18,6 +20,7 @@
         "axios": "^1.16.1",
         "country-flag-icons": "^1.6.17",
         "date-fns": "^4.3.0",
+        "env-cmd": "^11.0.0",
         "lucide-react": "^1.17.0",
         "material-react-table": "^3.2.1",
         "md-editor-rt": "^6.5.1",
