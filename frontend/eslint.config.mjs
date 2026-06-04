@@ -1,6 +1,7 @@
 import { defineConfig, globalIgnores } from "eslint/config";
 import nextVitals from "eslint-config-next/core-web-vitals";
 import nextTs from "eslint-config-next/typescript";
+import importPlugin from "eslint-plugin-import";
 
 const eslintConfig = defineConfig([
     // Kế thừa các cấu hình chuẩn của Next.js (Bao gồm Core Web Vitals cho SEO)
@@ -9,6 +10,17 @@ const eslintConfig = defineConfig([
 
     // Định nghĩa các quy tắc cho dự án
     {
+        plugins: {
+            "import": importPlugin,
+        },
+        settings: {
+            "import/resolver": {
+                typescript: {
+                    alwaysTryTypes: true,
+                },
+                node: true
+            },
+        },
         rules: {
             // --- Cấu hình quản lý Types & Biến (Theo yêu cầu) ---
             "@typescript-eslint/no-explicit-any": "warn", // Cảnh báo khi dùng any
@@ -32,12 +44,14 @@ const eslintConfig = defineConfig([
             "no-duplicate-imports": "error", // Không cho phép import trùng lặp thư viện trong cùng một file
             "react/react-in-jsx-scope": "off", // Next.js + React 19 không cần import React nữa
             "react/self-closing-comp": "error", // Tự động bắt đóng thẻ rút gọn (<Component />)
+            "no-var": "error", // Không cho phép dùng var
+            "prefer-template": "warn", // Ưu tiên dùng template string ${ }
 
             // --- Sắp xếp các dòng import theo thứ tự bảng chữ cái và gom cụm ---
             "import/order": [
                 "warn",
                 {
-                    "groups": ["builtin", "external", "internal", ["parent", "sibling"], "index"], // Đã xóa "object" để tránh lỗi cú pháp
+                    "groups": ["builtin", "external", "internal", ["parent", "sibling"], "index", "type"],
                     "newlines-between": "always", // Tự động cách dòng giữa các cụm import
                     "alphabetize": { "order": "asc", "caseInsensitive": true } // Sắp xếp theo bảng chữ cái A-Z
                 }
