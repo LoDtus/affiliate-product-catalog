@@ -1,0 +1,23 @@
+{
+    "name": "data",
+    "version": "1.0.0",
+    "description": "data",
+    "keywords": [
+        "data",
+        "mongodb"
+    ],
+    "license": "ISC",
+    "author": "nguyentrunglong",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "db:init": "cross-env DB_MODE=init-only node index.js",
+        "db:seed": "cross-env DB_MODE=init-and-seed node index.js"
+    },
+    "devDependencies": {
+        "cross-env": "^10.1.0"
+    },
+    "dependencies": {
+        "dotenv": "^17.4.2"
+    }
+}

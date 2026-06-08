@@ -1,5 +1,5 @@
-db = db.getSiblingDB("affiliate-product-catalog");
-db.categories.drop();
+const TARGET_DB_NAME = "affiliate-product-catalog";
+db = db.getSiblingDB(TARGET_DB_NAME);
 
 db.categories.insertMany([
     // ==========================================

@@ -1,7 +1,6 @@
-db = db.getSiblingDB("affiliate-product-catalog");
-db.affiliate.drop();
+const TARGET_DB_NAME = "affiliate-product-catalog";
+db = db.getSiblingDB(TARGET_DB_NAME);
 
-// Record gốc (ID 1) giữ nguyên của bạn
 db.affiliate.insertOne({
     "_id": ObjectId("000000000000000000000001"),
     "productId": ObjectId("000000000000000000000001"),
