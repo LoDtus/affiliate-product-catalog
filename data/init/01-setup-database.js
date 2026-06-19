@@ -5,7 +5,7 @@ print("==================================================");
 print(`[INIT] Creating database: ${TARGET_DB_NAME}`);
 print("==================================================");
 
-if (typeof reset !== "undefined" && reset === true) {
+if (typeof rst !== "undefined" && reset === true) {
     db.dropDatabase();
     print("[DATABASE RESET] Database dropped to reset development environment.");
 }

@@ -1,15 +1,16 @@
 services:
   mongodb:
-    image: mongo:7.0-jammy
+    image: mongo:7.0
     container_name: apc-mongodb-container
     restart: always
-    ports:
-      - "${MONGO_PORT}:${DOCKER_MONGO_PORT}"
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    ports:
+      # Bảo mật: Chỉ cho phép nội bộ server kết nối, chặn port công cộng
+      - "127.0.0.1:${MONGO_PORT}:${DOCKER_MONGO_PORT}"
     volumes:
-      - /var/lib/mongodb/data:/data/db
+      - apc_data:/data/db
 
   backend:
     container_name: apc-backend-container
@@ -23,6 +24,7 @@ services:
       - .env.production
     environment:
       - PORT=${BACKEND_PORT}
+      - MONGODB_URI=mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb:${DOCKER_MONGO_PORT}/affiliate-product-catalog?authSource=admin
     restart: always
     depends_on:
       - mongodb
@@ -66,4 +68,4 @@ services:
       - backend
 
 volumes:
-  custom_data:
+  apc_data:

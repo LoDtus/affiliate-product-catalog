@@ -4,31 +4,34 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from "dotenv";
 
-// Cấu hình để dùng được __dirname trong ES Module (type: "module")
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Nạp file .env từ thư mục gốc
 dotenv.config({
     path: path.resolve(__dirname, "../.env")
 });
 
-// Lấy cấu hình từ biến môi trường do package.json truyền xuống
 const DB_MODE = process.env.DB_MODE || "init-only";
-const 
-const MONGO_URI = DB_MODE === "init-and-seed"
-    ? `mongodb://${DOCKER_DEV_MONGO_USERNAME}:${DOCKER_DEV_MONGO_PASSWORD}@localhost:${DOCKER_DEV_MONGO_PORT}/affiliate-product-catalog?authSource=admin`
-    : `mongodb://${DOCKER_DEV_MONGO_USERNAME}:${DOCKER_DEV_MONGO_PASSWORD}@localhost:${DOCKER_DEV_MONGO_PORT}/affiliate-product-catalog?authSource=admin`;
-const MONGO_URI = process.env.MONGO_URI || "mongodb://root:rootpw@localhost:27018/admin";
 
-const INIT_DIR = path.resolve(__dirname, '../init');
-const SEED_DIR = path.resolve(__dirname, '../seeds');
+// Lấy thông tin kết nối từ môi trường do Docker Compose tiêm vào hoặc file .env local
+const MONGO_USERNAME = process.env.MONGO_USERNAME || "root";
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD || "rootpw";
+const MONGO_PORT = process.env.MONGO_PORT || "27018";
+
+// Khi chạy TRONG mạng nội bộ của Docker, container kết nối qua localhost:27017 nhờ chung dải network_mode
+// Khi chạy NGOÀI máy thật (Local thủ công), container kết nối qua localhost:27018 (MONGO_PORT)
+const MONGO_URI = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@localhost:${MONGO_PORT}/affiliate-product-catalog?authSource=admin`;
+
+const INIT_DIR = path.resolve(__dirname, './init');
+const SEED_DIR = path.resolve(__dirname, './seeds');
 
 try {
     console.log(`\n=== 🔌 STARTING MONGODB CONFIGURATION [Mode: ${DB_MODE}] ===`);
+    console.log(`Connection URI: mongodb://${MONGO_USERNAME}:******@localhost:${MONGO_PORT}/...`);
 
-    // Stage 1: Khởi tạo database và xóa dữ liệu cũ nếu ở chế độ DEV
+    // Stage 1: Khởi tạo database và xóa dữ liệu cũ nếu ở chế độ SEED
     console.log('Running: 01-setup-database.js...');
-
     const isReset = (DB_MODE === "init-and-seed") ? "true" : "false";
     execSync(
         `mongosh "${MONGO_URI}" --eval "var rst=${isReset};" --file "${path.join(INIT_DIR, '01-setup-database.js')}" --quiet`,
@@ -42,7 +45,7 @@ try {
         { stdio: 'inherit' }
     );
 
-    // Stage 3: Nạp dữ liệu mẫu (Chỉ kích hoạt khi chạy lệnh db:seed)
+    // Stage 3: Nạp dữ liệu mẫu
     if (DB_MODE === "init-and-seed") {
         console.log('\n🌱 [SEEDING DATA] Đang nạp dữ liệu mẫu vào các collections...');
         const seedFiles = fs.readdirSync(SEED_DIR).filter(file => file.endsWith('.js')).sort();

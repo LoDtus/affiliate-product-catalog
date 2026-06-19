@@ -1,14 +1,40 @@
 services:
   mongodb:
-    image: mongo:latest
+    image: mongo:7.0
     container_name: apc-mongodb-container
-    ports:
-      - "${MONGO_PORT}:${DOCKER_MONGO_PORT}"
+    restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    ports:
+      - "${MONGO_PORT}:${DOCKER_MONGO_PORT}"
     volumes:
-      - mongodb_dev_data:/data/db
+      - apc_data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand({ping:1})' | mongosh localhost:${DOCKER_MONGO_PORT}/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+  db-seeder:
+    container_name: apc-seeder-container
+    build:
+      context: ./data
+      dockerfile: Dockerfile
+    env_file:
+      - .env.development
+    environment:
+      - DB_MODE=${DB_MODE}
+      - MONGO_PORT=${DOCKER_MONGO_PORT}
+      - MONGO_USERNAME=${MONGO_USERNAME}
+      - MONGO_PASSWORD=${MONGO_PASSWORD}
+    volumes:
+      - ./data:/app
+      - /app/node_modules
+    network_mode: "service:mongodb"
+    depends_on:
+      mongodb:
+        condition: service_healthy
 
   backend:
     container_name: apc-backend-container
@@ -22,12 +48,14 @@ services:
       - .env.development
     environment:
       - PORT=${BACKEND_PORT}
+      - MONGODB_URI=mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb:${DOCKER_MONGO_PORT}/affiliate-product-catalog?authSource=admin
     volumes:
       - ./backend:/app
       - /app/node_modules
     restart: unless-stopped
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
 
   frontend:
     container_name: apc-frontend-container
@@ -74,4 +102,4 @@ services:
       - backend
 
 volumes:
-  custom_data:
+  apc_data:
