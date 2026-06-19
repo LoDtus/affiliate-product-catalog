@@ -5,14 +5,19 @@ RUN apk add --no-cache libc6-compat
 
 # ---------- STAGE 2: Development - Phục vụ chạy Dev trong Docker ----------
 FROM base AS development
-CMD ["sh", "-c", "npm install && npm run docker:dev"]
+CMD ["sh", "-c", "npm install && npm run dev"]
 
 # ---------- STAGE 3: Builder - Đóng gói dự án (Chạy khi deploy) ----------
 FROM base AS builder
 COPY package.json package-lock.json* ./
 RUN npm ci
 COPY . .
-RUN npm run docker:build
+
+ARG NEXT_PUBLIC_API_BASE_URL
+ARG NEXT_PUBLIC_SOCKET_PATH
+ARG NODE_ENV
+
+RUN npm run build
 
 # ---------- STAGE 4: Production - Đóng gói sản phẩm cuối ----------
 FROM node:20-alpine AS production
@@ -35,4 +40,4 @@ COPY --from=builder /app/node_modules ./node_modules
 USER nextjs
 ENV HOSTNAME="0.0.0.0"
 
-CMD ["npm", "run", "docker:start"]
+CMD ["npm", "run", "start"]

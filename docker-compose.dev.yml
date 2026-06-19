@@ -40,8 +40,10 @@ services:
     environment:
       - PORT=${FRONTEND_PORT}
       - WATCHPACK_POLLING=true # Giúp hot-reload mượt trên mọi OS (Windows/WSL2/Mac)
+    command: npm run dev -- -p ${FRONTEND_PORT}
     volumes:
       - ./frontend:/app # Đồng bộ code để hot-reload
+      - /app/node_modules # Cô lập node_modules trong docker, tránh xung đột cấu hình máy thật
       - /app/.next # Giữ cache Next.js độc lập để tăng tốc độ tải trang lúc dev
     restart: unless-stopped
     depends_on:
@@ -57,10 +59,14 @@ services:
       - "${ADMIN_PORT}:${ADMIN_PORT}"
     env_file:
       - .env.development
+    environment:
+      - PORT=${ADMIN_PORT}
+      - VITE_PORT=${ADMIN_PORT}
+    command: npm run dev -- --host 0.0.0.0 --port ${ADMIN_PORT}
     volumes:
-      - .:/app # Đồng bộ code từ máy thật vào container để hot-reload
+      - ./admin:/app # Đồng bộ code từ máy thật vào container để hot-reload
       - /app/node_modules # Giữ node_modules độc lập trong container, tránh xung đột
-      - /app/.vite_cache # Giữ cache Vite độc lập để tăng tốc độ compile
+      - /app/node_modules/.vite # Cô lập riêng cache optimize của Vite Compiler
     restart: unless-stopped
     depends_on:
       - backend

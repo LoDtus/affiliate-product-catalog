@@ -6,9 +6,6 @@
         "dev": "env-cmd -f ../.env.development next dev",
         "start": "env-cmd -f ../.env.production next start",
         "build": "next build",
-        "docker:dev": "next dev",
-        "docker:start": "next start",
-        "docker:build": "next build",
         "lint": "eslint"
     },
     "dependencies": {

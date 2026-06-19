@@ -1,7 +1,7 @@
-# ===== Default =====
+# ---------- Default ----------
 * text=auto
 
-# ===== Source code =====
+# ---------- Source code ----------
 *.ts     text eol=lf
 *.tsx    text eol=lf
 *.js     text eol=lf
@@ -25,7 +25,7 @@
 *.bat    text eol=crlf
 *.ps1    text eol=crlf
 
-# ===== Binary / media =====
+# ---------- Binary / media ----------
 *.png    binary
 *.jpg    binary
 *.jpeg   binary

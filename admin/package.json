@@ -7,8 +7,6 @@
         "dev": "env-cmd -f ../.env.development vite",
         "build": "tsc -b && vite build",
         "preview": "vite preview",
-        "docker:dev": "vite --host 0.0.0.0 --port 9261",
-        "docker:build": "tsc -b && vite build",
         "lint": "eslint ."
     },
     "dependencies": {
