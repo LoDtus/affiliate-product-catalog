@@ -16,24 +16,23 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+      target: production
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
-    # environment:
-      # LƯU Ý: Trong môi trường Docker, thay 'localhost' bằng tên service 'mongodb-standard'
-      # MONGO_URI: mongodb://root:rootpw@mongodb-standard:9265/affiliate-product-catalog?authSource=admin
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
+    env_file:
+      - .env.production
+    environment:
+      - PORT=${BACKEND_PORT}
+    restart: always
     depends_on:
       - mongodb
-    restart: unless-stopped
 
-  frontend: # Môi trường Product cho Frontend
+  frontend:
     container_name: apc-frontend-container
     build:
       context: ./frontend
       dockerfile: Dockerfile
-      target: production # Bỏ qua stage 2, chạy các stage còn lại
+      target: production
       args:
         - NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}
         - NEXT_PUBLIC_SOCKET_PATH=${NEXT_PUBLIC_SOCKET_PATH}
@@ -41,7 +40,7 @@ services:
     ports:
       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
     env_file:
-      - .env.production # Tự động nạp toàn bộ biến từ file .env.production vào hệ thống
+      - .env.production
     environment:
       - PORT=${FRONTEND_PORT}
     restart: always

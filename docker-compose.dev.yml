@@ -11,23 +11,25 @@ services:
       - mongodb_dev_data:/data/db
 
   backend:
+    container_name: apc-backend-container
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: apc-backend-container
+      target: development
     ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
-    # environment:
-      # LƯU Ý: Trong môi trường Docker, thay 'localhost' bằng tên service 'mongodb-standard'
-      # MONGO_URI: mongodb://root:rootpw@mongodb-standard:9265/affiliate-product-catalog?authSource=admin
+    env_file:
+      - .env.development
+    environment:
+      - PORT=${BACKEND_PORT}
     volumes:
       - ./backend:/app
       - /app/node_modules
-    depends_on:
-      - mongodb-standard
     restart: unless-stopped
+    depends_on:
+      - mongodb
 
-  frontend: # Môi trường Dev cho Frontend
+  frontend:
     container_name: apc-frontend-container
     build:
       context: ./frontend
@@ -35,7 +37,7 @@ services:
       target: development # Chỉ định dừng lại ở stage development trong Dockerfile
     ports:
       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
-    env_file: # Tự động nạp toàn bộ biến từ file .env.development vào hệ thống
+    env_file:
       - .env.development
     environment:
       - PORT=${FRONTEND_PORT}

@@ -8,20 +8,26 @@
     "scripts": {
         "build": "nest build",
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+
         "start": "nest start",
         "start:dev": "nest start --watch",
         "start:debug": "nest start --debug --watch",
         "start:prod": "node dist/main",
+
         "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+
         "test": "jest",
         "test:watch": "jest --watch",
         "test:cov": "jest --coverage",
+        
         "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
         "test:e2e": "jest --config ./test/jest-e2e.json",
+
         "reindex": "npm run cli -- reindex-all",
         "reindex:force": "npm run cli -- reindex-all --force",
         "reindex:users": "npm run cli -- reindex-all --tables users",
         "reindex:users:force": "npm run cli -- reindex-all --tables users --force",
+
         "cli": "tsx --tsconfig tsconfig.json src/cli.ts",
         "cli:prod": "node -r tsconfig-paths/register dist/cli.js"
     },
