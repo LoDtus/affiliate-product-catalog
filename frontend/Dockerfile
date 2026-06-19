@@ -1,25 +1,23 @@
-# STAGE 1: Khởi tạo môi trường 
+# ---------- STAGE 1: Khởi tạo môi trường ----------
 FROM node:20-alpine AS base
 WORKDIR /app
 RUN apk add --no-cache libc6-compat
-COPY package.json package-lock.json* ./
 
-# STAGE 2: Development - Phục vụ chạy Dev trong Docker
+# ---------- STAGE 2: Development - Phục vụ chạy Dev trong Docker ----------
 FROM base AS development
-RUN npm ci
-COPY . .
-EXPOSE 9260
-CMD ["npm", "run", "docker:dev"]
+CMD ["sh", "-c", "npm install && npm run docker:dev"]
 
-# STAGE 3: Builder - Đóng gói dự án (Chạy khi deploy)
+# ---------- STAGE 3: Builder - Đóng gói dự án (Chạy khi deploy) ----------
 FROM base AS builder
+COPY package.json package-lock.json* ./
 RUN npm ci
 COPY . .
 RUN npm run docker:build
 
-# STAGE 4: Production - Đóng gói sản phẩm cuối
+# ---------- STAGE 4: Production - Đóng gói sản phẩm cuối ----------
 FROM node:20-alpine AS production
 WORKDIR /app
+
 ENV NODE_ENV=production
 # Tắt telemetry thu thập dữ liệu của Next.js để tăng hiệu năng và bảo mật
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -35,8 +33,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 
 USER nextjs
-EXPOSE 9260
-ENV PORT=9260
 ENV HOSTNAME="0.0.0.0"
 
 CMD ["npm", "run", "docker:start"]

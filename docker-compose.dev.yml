@@ -1,0 +1,69 @@
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: apc-mongodb-container
+    ports:
+      - "${MONGO_PORT}:${DOCKER_MONGO_PORT}"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    volumes:
+      - mongodb_dev_data:/data/db
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: apc-backend-container
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+    # environment:
+      # LƯU Ý: Trong môi trường Docker, thay 'localhost' bằng tên service 'mongodb-standard'
+      # MONGO_URI: mongodb://root:rootpw@mongodb-standard:9265/affiliate-product-catalog?authSource=admin
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb-standard
+    restart: unless-stopped
+
+  frontend: # Môi trường Dev cho Frontend
+    container_name: apc-frontend-container
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: development # Chỉ định dừng lại ở stage development trong Dockerfile
+    ports:
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+    env_file: # Tự động nạp toàn bộ biến từ file .env.development vào hệ thống
+      - .env.development
+    environment:
+      - PORT=${FRONTEND_PORT}
+      - WATCHPACK_POLLING=true # Giúp hot-reload mượt trên mọi OS (Windows/WSL2/Mac)
+    volumes:
+      - ./frontend:/app # Đồng bộ code để hot-reload
+      - /app/.next # Giữ cache Next.js độc lập để tăng tốc độ tải trang lúc dev
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+  admin:
+    container_name: apc-admin-container
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+      target: development
+    ports:
+      - "${ADMIN_PORT}:${ADMIN_PORT}"
+    env_file:
+      - .env.development
+    volumes:
+      - .:/app # Đồng bộ code từ máy thật vào container để hot-reload
+      - /app/node_modules # Giữ node_modules độc lập trong container, tránh xung đột
+      - /app/.vite_cache # Giữ cache Vite độc lập để tăng tốc độ compile
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+volumes:
+  custom_data:

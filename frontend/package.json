@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "dev": "env-cmd -f .env.development next dev",
-        "start": "env-cmd -f .env.production next start",
+        "dev": "env-cmd -f ../.env.development next dev",
+        "start": "env-cmd -f ../.env.production next start",
         "build": "next build",
         "docker:dev": "next dev",
         "docker:start": "next start",

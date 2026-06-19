@@ -1,5 +1,5 @@
-# 1. Các thư mục build hệ thống và cache
-# Ngăn Docker copy cache cũ từ máy thật vào làm sai lệch bản build mới
+# 1. CÁC THƯ MỤC BUILD HỆ THỐNG VÀ CACHE (CRITICAL)
+# Ngăn Docker copy cache cũ từ máy thật vào làm sai lệch bản build mới hoặc gây lỗi xung đột OS
 node_modules/
 .next/
 out/
@@ -8,21 +8,28 @@ dist/
 .turbo/
 .cache/
 .eslintcache
+.npm/
+.yarn/
+.pnpm-store/
 
-# 2. Biến môi trường
-# Cho phép giữ lại các file .env để phục vụ build/dev trong container bằng env-cmd.
-*.env.local
-*.env.test.local
-*.env.development.local
-*.env.production.local
-.env.production
+# 2. BIẾN MÔI TRƯỜNG (SECURITY)
+# Vì Env đã được nạp tập trung qua Docker Compose (Runtime & Build-time environment),
+# Chặn TOÀN BỘ file .env vật lý để tránh rò rỉ thông tin bảo mật vào trong Image.
+.env
+.env.*
+*.env
+*.env.*
 !.env.example
 
-# 3. File rác của Hệ điều hành và IDE
-# Giúp image nhẹ hơn, không mất công copy những file không phục vụ chạy code
+# 3. FILE RÁC CỦA HỆ ĐIỀU HÀNH VÀ IDE
 .vscode/
 .idea/
 .history/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 .DS_Store
 .AppleDouble
 .LSOverride
@@ -31,21 +38,25 @@ Ehthumbs.db
 Desktop.ini
 *.bak
 *.orig
-*.swp
-*.swo
 
-# 4. Logs và Testing / Mock dữ liệu
+# 4. LOGS, TESTING VÀ DỮ LIỆU ĐẦU RA
 logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 pnpm-debug.log*
+lerna-debug.log*
 coverage/
 test-results/
+.jest/
 
-# 5. Các định dạng file văn bản, tài liệu không cần cho runtime
+# 5. FILE CHÍNH DOCKER & TÀI LIỆU (KHÔNG PHỤC VỤ RUNTIME)
+# Không cần thiết phải copy chính Dockerfile hay tài liệu vào môi trường chạy sản phẩm
+Dockerfile
+.dockerignore
+docker-compose*.yml
+*.md
 *.txt
 *.xlsx
 *.xls
 *.csv
-*.md
