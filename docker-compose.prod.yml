@@ -24,7 +24,10 @@ services:
       - .env.production
     environment:
       - PORT=${BACKEND_PORT}
+      - DISK_PATH=/app/disk
       - MONGODB_URI=mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb:${DOCKER_MONGO_PORT}/affiliate-product-catalog?authSource=admin
+    volumes:
+      - ${DISK_PATH}:/app/disk
     restart: always
     depends_on:
       - mongodb

@@ -64,7 +64,7 @@ export default function Header() {
                 <Link
                     href="/vi/products"
                     aria-label="Go to homepage"
-                    className="flex-1"
+                    className="flex-1 shrink-0"
                 >
                     <h1 className="text-2xl font-bold">Product Review Website</h1>
                 </Link>

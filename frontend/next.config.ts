@@ -5,6 +5,17 @@ const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const SOCKET_PATH = process.env.NEXT_PUBLIC_SOCKET_PATH;
 
 const nextConfig: NextConfig = {
+    output: "standalone",
+    webpack: (config, { dev }) => {
+        if (dev) {
+            config.watchOptions = {
+                poll: 1000,
+                aggregateTimeout: 300,
+            };
+        }
+        return config;
+    },
+
     // 1. Tối ưu hóa trình biên dịch của Next.js (SWC Compiler)
     compiler: {
         // Tự động xóa bỏ các lệnh console.log khi build, giữ lại console.error và console.warn

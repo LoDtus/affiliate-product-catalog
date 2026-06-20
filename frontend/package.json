@@ -3,8 +3,9 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "dev": "env-cmd -f ../.env.development next dev",
-        "start": "env-cmd -f ../.env.production next start",
+        "dev": "env-cmd -f ../.env.development next dev -p $FRONTEND_PORT",
+        "dev:docker": "next dev --webpack -H 0.0.0.0 -p $PORT",
+        "start": "env-cmd -f ../.env.production next start -p $FRONTEND_PORT",
         "build": "next build",
         "lint": "eslint"
     },
@@ -38,6 +39,7 @@
         "@types/node": "^20",
         "@types/react": "^19",
         "@types/react-dom": "^19",
+        "cross-env": "^10.1.0",
         "eslint": "^9",
         "eslint-config-next": "16.2.6",
         "tailwindcss": "^4",

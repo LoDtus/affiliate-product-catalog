@@ -5,7 +5,7 @@ RUN apk add --no-cache libc6-compat
 
 # ---------- STAGE 2: Development ----------
 FROM base AS development
-CMD ["sh", "-c", "npm install && npm run dev"]
+CMD ["sh", "-c", "npm install && npm run dev:docker"]
 
 # STAGE 3: Builder - Biên dịch dự án ra file tĩnh
 FROM base AS builder

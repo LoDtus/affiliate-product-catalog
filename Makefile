@@ -14,7 +14,7 @@ ifneq ($(wildcard .env.development),)
 endif
 
 .PHONY: install lint db-local-migrate db-local-seed dev-local-full \
-	dev-build dev-full dev-backend dev-frontend dev-admin dev-migrate dev-seed dev-down dev-down-clear \
+	dev-build dev dev-backend dev-frontend dev-admin dev-migrate dev-seed dev-down dev-clear \
 	prod-migrate prod-up prod-down clear
 
 # ---------- LOCAL DEVELOPMENT ----------
@@ -50,7 +50,7 @@ dev-local-full:
 dev-build:
 	docker compose -f $(DOCKER_DEV) up -d --build
 
-dev-full:
+dev:
 	docker compose -f $(DOCKER_DEV) up -d
 
 dev-migrate:
@@ -64,7 +64,7 @@ dev-seed:
 dev-down:
 	docker compose -f $(DOCKER_DEV) down
 
-dev-down-clear:
+dev-clear:
 	docker compose -f $(DOCKER_DEV) down -v
 
 

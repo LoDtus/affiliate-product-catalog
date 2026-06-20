@@ -19,8 +19,9 @@ async function bootstrap() {
 	const logger = new Logger('Bootstrap');
 
 	const configService = app.get(ConfigService);
-	const port = configService.get<number>('PORT') || 9270;
-	const globalPrefix = configService.get<string>('GLOBAL_PREFIX') || '/api/v1';
+	const PORT = configService.get<number>('BACKEND_PORT') || 9270;
+	const GLOBAL_PREFIX = configService.get<string>('GLOBAL_PREFIX') || '/api/v1';
+	const BACKEND_URL = configService.get<string>('BACKEND_URL');
 	const env = configService.get<string>('NODE_ENV') || 'development';
 
 	// Express settings
@@ -32,7 +33,7 @@ async function bootstrap() {
 	configurePermissionsPolicy(app);
 
 	// Global app config
-	app.setGlobalPrefix(globalPrefix);
+	app.setGlobalPrefix(GLOBAL_PREFIX);
 
 	// Pipes
 	configureValidationPipe(app);
@@ -40,9 +41,9 @@ async function bootstrap() {
 	// Interceptors
 	configureInterceptors(app);
 
-	await app.listen(port);
+	await app.listen(PORT);
 	logger.log(
-		`Application is running on: http://localhost:${port}${globalPrefix}`,
+		`Application is running on: ${BACKEND_URL}${GLOBAL_PREFIX}`,
 	);
 	logger.log(`Environment: ${env}`);
 

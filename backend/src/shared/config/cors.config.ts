@@ -4,10 +4,13 @@ export const configureCors = (app: NestExpressApplication) => {
 	app.enableCors({
 		origin: (origin, callback) => {
 			const allowedOrigins = [
-				'http://localhost:9000',
 				'http://localhost:3000',
+				'http://localhost:5173',
+				'http://localhost:9260',
+				'http://localhost:9261',
 				'http://localhost:5500',
 				'http://localhost:5000',
+				'http://localhost:5555',
 			];
 
 			// Cho phép request không có origin (Postman, server-to-server, mobile app...)

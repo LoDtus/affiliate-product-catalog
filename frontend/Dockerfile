@@ -2,20 +2,22 @@
 FROM node:20-alpine AS base
 WORKDIR /app
 RUN apk add --no-cache libc6-compat
+ENV NEXT_TELEMETRY_DISABLED=1
 
 # ---------- STAGE 2: Development - Phục vụ chạy Dev trong Docker ----------
 FROM base AS development
-CMD ["sh", "-c", "npm install && npm run dev"]
+# CMD ["sh", "-c", "npm install && npm run dev:docker"]
+COPY package.json package-lock.json* ./
+RUN npm ci
 
 # ---------- STAGE 3: Builder - Đóng gói dự án (Chạy khi deploy) ----------
 FROM base AS builder
-COPY package.json package-lock.json* ./
-RUN npm ci
+COPY --from=development /app/node_modules ./node_modules
 COPY . .
 
 ARG NEXT_PUBLIC_API_BASE_URL
 ARG NEXT_PUBLIC_SOCKET_PATH
-ARG NODE_ENV
+ENV NODE_ENV=production
 
 RUN npm run build
 
@@ -24,8 +26,11 @@ FROM node:20-alpine AS production
 WORKDIR /app
 
 ENV NODE_ENV=production
-# Tắt telemetry thu thập dữ liệu của Next.js để tăng hiệu năng và bảo mật
+ENV HOSTNAME="0.0.0.0"
 ENV NEXT_TELEMETRY_DISABLED=1
+
+ARG PORT=3000
+ENV PORT=${PORT}
 
 # Tạo user ảo để chạy ứng dụng (Tăng tính bảo mật, tránh quyền root)
 RUN addgroup --system --gid 1001 nodejs
@@ -38,6 +43,6 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
 
 USER nextjs
-ENV HOSTNAME="0.0.0.0"
+EXPOSE ${PORT}
 
-CMD ["npm", "run", "start"]
+CMD ["node", "server.js"]

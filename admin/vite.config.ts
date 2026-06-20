@@ -5,7 +5,7 @@ import path from "path";
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), "");
-    const PORT = parseInt(env.PORT, 10);
+    const PORT = parseInt(env.ADMIN_PORT, 10);
     const BACKEND_URL = env.BACKEND_URL;
     const API_BASE_URL = env.VITE_API_BASE_URL;
     const SOCKET_PATH = env.VITE_SOCKET_PATH;
