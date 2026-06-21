@@ -12,7 +12,8 @@
     "main": "index.js",
     "scripts": {
         "db:init": "cross-env DB_MODE=init-only node index.js",
-        "db:seed": "cross-env DB_MODE=init-and-seed node index.js"
+        "db:seed": "cross-env DB_MODE=init-and-seed node index.js",
+        "db:reset": "cross-env DB_MODE=reset node index.js"
     },
     "devDependencies": {
         "cross-env": "^10.1.0"

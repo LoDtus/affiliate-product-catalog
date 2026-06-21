@@ -127,6 +127,4 @@ for (let i = 2; i <= 100; i++) {
 
 // Thực hiện insert hàng loạt 20 bản ghi vào Database
 db.affiliate.insertMany(newRecords);
-
 // In thông báo kiểm tra số lượng
-print("Tổng số bản ghi trong bảng affiliate hiện tại: " + db.affiliate.countDocuments());

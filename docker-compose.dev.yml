@@ -18,16 +18,13 @@ services:
 
   db-seeder:
     container_name: apc-seeder-container
+    profiles:
+      - tools
     build:
       context: ./data
       dockerfile: Dockerfile
     env_file:
       - .env.development
-    environment:
-      - DB_MODE=${DB_MODE}
-      - MONGO_PORT=${DOCKER_MONGO_PORT}
-      - MONGO_USERNAME=${MONGO_USERNAME}
-      - MONGO_PASSWORD=${MONGO_PASSWORD}
     volumes:
       - ./data:/app
       - /app/node_modules
@@ -50,6 +47,8 @@ services:
       - PORT=${BACKEND_PORT}
       - DISK_PATH=${DISK_PATH}
       - MONGODB_URI=mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb:${DOCKER_MONGO_PORT}/affiliate-product-catalog?authSource=admin
+      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=1000
     volumes:
       - ./backend:/app
       - /app/node_modules

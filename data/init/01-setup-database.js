@@ -1,9 +1,7 @@
 const TARGET_DB_NAME = "affiliate-product-catalog";
 db = db.getSiblingDB(TARGET_DB_NAME);
 
-print(`[INIT] Creating database: ${TARGET_DB_NAME}`);
-
-if (typeof rst !== "undefined" && reset === true) {
+if (typeof reset !== "undefined" && reset === true) {
     db.dropDatabase();
     print("[DATABASE RESET] Database dropped to reset development environment.");
 }

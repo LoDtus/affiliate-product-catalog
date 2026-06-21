@@ -13,8 +13,8 @@ ifneq ($(wildcard .env.development),)
     export
 endif
 
-.PHONY: install lint db-local-migrate db-local-seed dev-local-full \
-	dev-build dev dev-backend dev-frontend dev-admin dev-migrate dev-seed dev-down dev-clear \
+.PHONY: install lint db-local-migrate db-local-seed db-local-reset dev-local-full \
+	dev-build dev dev-backend dev-frontend dev-admin dev-migrate dev-seed dev-reset dev-down dev-clear \
 	prod-migrate prod-up prod-down clear
 
 # ---------- LOCAL DEVELOPMENT ----------
@@ -31,10 +31,14 @@ lint:
 
 # Yêu cầu: Phải có mongosh trong máy
 db-local-migrate:
-	cd $(DATA_DIR) && DB_MODE=init-only node index.js
+	cd $(DATA_DIR) && npm run db:init
 
 db-local-seed:
-	cd $(DATA_DIR) && DB_MODE=init-and-seed node index.js
+	cd $(DATA_DIR) && npm run db:seed
+
+db-local-reset:
+	@read -p "This command will DELETE ALL existing data. Continue? [y/N] " confirm && [ "$$confirm" = "y" ]
+	cd $(DATA_DIR) && npm run db:reset
 
 dev-local-full:
 	@echo "Starting all services locally..."
@@ -54,18 +58,21 @@ dev:
 	docker compose -f $(DOCKER_DEV) up -d
 
 dev-migrate:
-	docker compose -f $(DOCKER_DEV) up -d mongodb
-	DB_MODE=init-only docker compose -f $(DOCKER_DEV) up -d db-seeder
+	docker compose -f $(DOCKER_DEV) --env-file .env.development run --rm db-seeder npm run db:init
 
 dev-seed:
-	docker compose -f $(DOCKER_DEV) up -d mongodb
-	DB_MODE=init-and-seed docker compose -f $(DOCKER_DEV) up -d db-seeder
+	docker compose -f $(DOCKER_DEV) --env-file .env.development run --rm db-seeder npm run db:seed
+
+dev-reset:
+	@read -p "This command will DELETE ALL existing data. Continue? [y/N] " confirm && [ "$$confirm" = "y" ]
+	docker compose -f $(DOCKER_DEV) --env-file .env.development run --rm db-seeder npm run db:reset
 
 dev-down:
 	docker compose -f $(DOCKER_DEV) down
 
 dev-clear:
-	docker compose -f $(DOCKER_DEV) down -v
+	docker compose -f $(DOCKER_DEV) --profile tools down -v --rmi local --remove-orphans
+	docker container prune -f --filter "label=com.docker.compose.project=$(APPLICATION_NAME)"
 
 
 
@@ -89,4 +96,6 @@ clear:
 	rm -rf $(BACKEND_DIR)/dist $(BACKEND_DIR)/*.tsbuildinfo
 	rm -rf $(ADMIN_DIR)/dist
 	rm -rf node_modules $(FRONTEND_DIR)/node_modules $(BACKEND_DIR)/node_modules $(ADMIN_DIR)/node_modules $(DATA_DIR)/node_modules
-	@echo "All local caches and node_modules have been cleared successfully!"
+	@echo "Docker infrastructure deep cleaning..."
+	docker compose -f $(DOCKER_DEV) --profile tools down -v --remove-orphans
+	@echo "All local caches, node_modules, and Docker containers/volumes have been wiped!"

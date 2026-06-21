@@ -34,5 +34,11 @@
 		"**/*.e2e-spec.ts",
 		"documentation/**",
 		"documentation/template-playground/**"
-	]
+	],
+	"watchOptions": {
+        "watchFile": "fixedPollingInterval",
+        "watchDirectory": "fixedPollingInterval",
+        "fallbackPolling": "fixedInterval",
+        "excludeDirectories": ["**/node_modules", "dist"]
+    }
 }

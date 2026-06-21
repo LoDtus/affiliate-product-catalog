@@ -6,7 +6,6 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 # ---------- STAGE 2: Development - Phục vụ chạy Dev trong Docker ----------
 FROM base AS development
-# CMD ["sh", "-c", "npm install && npm run dev:docker"]
 COPY package.json package-lock.json* ./
 RUN npm ci
 
