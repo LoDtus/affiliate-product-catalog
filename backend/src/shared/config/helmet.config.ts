@@ -5,7 +5,6 @@ export const configureHelmet = (
     app: NestExpressApplication,
     env: string
 ) => {
-    // app.use(helmet(configureHelmet(env)));
     app.use(helmet({
 		contentSecurityPolicy: {
 			useDefaults: true,
