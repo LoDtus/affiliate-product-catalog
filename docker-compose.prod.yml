@@ -8,7 +8,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
     ports:
       # Bảo mật: Chỉ cho phép nội bộ server kết nối, chặn port công cộng
-      - "127.0.0.1:${MONGO_PORT}:${DOCKER_MONGO_PORT}"
+      - "127.0.0.1:${MONGO_PORT}:${MONGO_PORT}"
     volumes:
       - apc_data:/data/db
 
@@ -25,7 +25,7 @@ services:
     environment:
       - PORT=${BACKEND_PORT}
       - DISK_PATH=/app/disk
-      - MONGODB_URI=mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb:${DOCKER_MONGO_PORT}/affiliate-product-catalog?authSource=admin
+      - MONGODB_URI=mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongodb:${MONGO_PORT}/affiliate-product-catalog?authSource=admin
     volumes:
       - ${DISK_PATH}:/app/disk
     restart: always

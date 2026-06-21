@@ -10,7 +10,6 @@ import { CategoryModule } from './modules/category/category.module';
 import { EventModule } from './modules/event/event.module';
 import { SearchModule } from './modules/search/search.module';
 import { GracefulShutdownModule } from 'nestjs-graceful-shutdown';
-import { NODE_ENV } from '@/shared/constants/env.constant';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { ThrottlerStorageRedisService } from '@nest-lab/throttler-storage-redis';
 import { v7 as uuidv7 } from 'uuid';
@@ -46,13 +45,13 @@ import { CoreModule } from './modules/core/core.module';
 			imports: [ConfigModule],
 			inject: [ConfigService],
 			useFactory: (config: ConfigService) => ({
-				// Multiple definitions: burst + sustain (best practice cho medium-scale)
+				// Multiple definitions: burst + sustain
 				throttlers: [
 					// Ngắn: chống burst attack (brute-force login, spam)
 					{ name: 'short', ttl: 1000, limit: 5 }, // 5 req / 1s
 					// Trung bình: chống abuse chậm
 					{ name: 'medium', ttl: 10000, limit: 20 }, // 20 req / 10s
-					// Dài: giới hạn tổng ngày (tùy business)
+					// Dài: giới hạn tổng ngày
 					{ name: 'long', ttl: 60000, limit: 100 }, // 100 req / 1 phút (có thể tăng lên 300–500 cho API public)
 				],
 

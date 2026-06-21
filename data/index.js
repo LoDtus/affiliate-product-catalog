@@ -17,30 +17,18 @@ dotenv.config({
     path: fs.existsSync(localEnvPath) ? localEnvPath : rootEnvPath
 });
 
+const DB_HOST =         "localhost";
+const MONGO_PORT =      process.env.MONGO_PORT || "9265";
 const DB_MODE =         process.env.DB_MODE || "init-only";  // "init-only" | "init-and-seed" | "reset"
 const MONGO_USERNAME =  process.env.MONGO_USERNAME;
 const MONGO_PASSWORD =  process.env.MONGO_PASSWORD;
-const MONGO_PORT =      process.env.DOCKER_MONGO_PORT || process.env.MONGO_PORT || "27017";
-let MONGO_URI = process.env.MONGODB_URI;
-
-if (!MONGO_URI) {
-    MONGO_URI = `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@localhost:${MONGO_PORT}/affiliate-product-catalog?authSource=admin`;
-} else {
-    // Nếu có MONGODB_URI từ file env truyền vào, đảm bảo nó trỏ về đúng localhost và đúng cổng nội bộ của Docker
-    if (MONGO_URI.includes('@mongodb:')) {
-        MONGO_URI = MONGO_URI.replace('@mongodb:', '@localhost:');
-    }
-    if (process.env.MONGO_PORT && process.env.DOCKER_MONGO_PORT && MONGO_URI.includes(`:${process.env.MONGO_PORT}`)) {
-        MONGO_URI = MONGO_URI.replace(`:${process.env.MONGO_PORT}`, `:${process.env.DOCKER_MONGO_PORT}`);
-    }
-}
-
-const INIT_DIR = path.resolve(__dirname, './init');
-const SEED_DIR = path.resolve(__dirname, './seeds');
+const MONGO_URI =       `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${DB_HOST}:${MONGO_PORT}/affiliate-product-catalog?authSource=admin`;
+const INIT_DIR =        path.resolve(__dirname, './init');
+const SEED_DIR =        path.resolve(__dirname, './seeds');
 
 try {
     console.log(`\n---------- STARTING MONGODB CONFIGURATION [Mode: ${DB_MODE}] ----------`);
-    console.log(`Connection URI: mongodb://${MONGO_USERNAME}:******@localhost:${MONGO_PORT}/...`);
+    console.log(`Connection URI: mongodb://${MONGO_USERNAME}:******@${DB_HOST}:${MONGO_PORT}/...`);
 
     // Stage 1: Khởi tạo database và xóa dữ liệu cũ nếu ở chế độ SEED
     console.log('- Running: 01-setup-database.js...');

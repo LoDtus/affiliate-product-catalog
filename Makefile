@@ -40,6 +40,7 @@ db-local-reset:
 	@read -p "This command will DELETE ALL existing data. Continue? [y/N] " confirm && [ "$$confirm" = "y" ]
 	cd $(DATA_DIR) && npm run db:reset
 
+# Fix lại
 dev-local-full:
 	@echo "Starting all services locally..."
 	(cd $(BACKEND_DIR) && PORT=$(BACKEND_PORT) npm run start:dev) & \
@@ -70,6 +71,7 @@ dev-reset:
 dev-down:
 	docker compose -f $(DOCKER_DEV) down
 
+# Thêm clear db
 dev-clear:
 	docker compose -f $(DOCKER_DEV) --profile tools down -v --rmi local --remove-orphans
 	docker container prune -f --filter "label=com.docker.compose.project=$(APPLICATION_NAME)"

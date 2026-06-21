@@ -5,7 +5,6 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
-import { GLOBAL_PREFIX, NODE_ENV, PORT } from './shared/constants/env.constant';
 import { setupGracefulShutdown } from 'nestjs-graceful-shutdown';
 import { configureCors } from './shared/config/cors.config';
 import { configureHelmet } from './shared/config/helmet.config';
@@ -18,34 +17,37 @@ async function bootstrap() {
 	const app = await NestFactory.create<NestExpressApplication>(AppModule);
 	const logger = new Logger('Bootstrap');
 
-	const configService = app.get(ConfigService);
-	const PORT = configService.get<number>('BACKEND_PORT') || 9270;
-	const GLOBAL_PREFIX = configService.get<string>('GLOBAL_PREFIX') || '/api/v1';
-	const BACKEND_URL = configService.get<string>('BACKEND_URL');
-	const env = configService.get<string>('NODE_ENV') || 'development';
+	const configService = 	app.get(ConfigService);
+	const APPLICATION_NAME = configService.get<string>('DESCRIPTION') 	|| 'Affiliate Product Catalog (APC)';
+	const VERSION = 		configService.get<string>('VERSION');
+	const NODE_ENV = 		configService.get<string>('NODE_ENV')		|| 'development';
+	const PORT = 			configService.get<number>('BACKEND_PORT') 	|| 9270;
+	const BACKEND_URL = 	configService.get<string>('BACKEND_URL') 	|| `http://localhost:${PORT}`;
+	const GLOBAL_PREFIX = 	configService.get<string>('GLOBAL_PREFIX') 	|| '/api/v1';
 
 	// Express settings
 	app.set('trust proxy', true);
 
 	// Security middleware
-	configureHelmet(app, env);
-	configureCors(app);
+	configureHelmet(app, NODE_ENV);
+	configureCors(app, configService);
 	configurePermissionsPolicy(app);
 
 	// Global app config
 	app.setGlobalPrefix(GLOBAL_PREFIX);
 
-	// Pipes
 	configureValidationPipe(app);
-
-	// Interceptors
 	configureInterceptors(app);
 
 	await app.listen(PORT);
-	logger.log(
-		`Application is running on: ${BACKEND_URL}${GLOBAL_PREFIX}`,
-	);
-	logger.log(`Environment: ${env}`);
+
+	logger.log(`====================================================`);
+    logger.log(`${APPLICATION_NAME} is running`);
+    logger.log(`====================================================`);
+    logger.log(`Version: ${VERSION}`);
+    logger.log(`Environment: ${NODE_ENV.toUpperCase()}`);
+    logger.log(`API URL: ${BACKEND_URL}${GLOBAL_PREFIX}`);
+    logger.log(`====================================================`);
 
 	setupGracefulShutdown({ app });
 }

@@ -1,16 +1,17 @@
 import { NestExpressApplication } from "@nestjs/platform-express";
+import { ConfigService } from "@nestjs/config";
 
-export const configureCors = (app: NestExpressApplication) => {
+export const configureCors = (app: NestExpressApplication, configService: ConfigService) => {
 	app.enableCors({
 		origin: (origin, callback) => {
+			const POSTMAN_URLS = configService.get<string>('POSTMAN_URLS') || '';
+
 			const allowedOrigins = [
 				'http://localhost:3000',
 				'http://localhost:5173',
-				'http://localhost:9260',
-				'http://localhost:9261',
-				'http://localhost:5500',
-				'http://localhost:5000',
-				'http://localhost:5555',
+				`http://localhost:${configService.get('FRONTEND_PORT') || 9260}`,
+                `http://localhost:${configService.get('ADMIN_PORT') || 9261}`,
+                ...POSTMAN_URLS.split(',').map(url => url.trim())
 			];
 
 			// Cho phép request không có origin (Postman, server-to-server, mobile app...)
