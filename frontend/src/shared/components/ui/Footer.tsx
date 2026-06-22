@@ -53,7 +53,7 @@ export default function Footer() {
     return (
         <>
             <div className="w-full px-3 py-5 bg-white">
-                <div className="max-w-960 w-full mx-auto flex gap-2">
+                <div className="max-w-960 w-full mx-auto flex flex-col md:flex-row gap-5 md:gap-2">
                     <div className="basis-[33.33%]">
                         <h1 className="font-bold text-2xl text-orange-sunset">
                             Product Review Website
@@ -67,7 +67,7 @@ export default function Footer() {
                         </p>
                     </div>
 
-                    <div className="basis-[33.33%] flex flex-col gap-2 items-center">
+                    <div className="basis-[33.33%] flex flex-col gap-2 md:items-center">
                         <h2 className="font-semibold text-xl">Legal & Policies</h2>
                         <Link
                             href="#"
@@ -111,7 +111,7 @@ export default function Footer() {
                         </Link>
                     </div>
 
-                    <div className="basis-[33.33%] flex flex-col gap-2 items-end">
+                    <div className="basis-[33.33%] flex flex-col gap-2 md:items-end">
                         <h2 className="font-semibold text-xl">Other Projects</h2>
                         <a
                             href="#"
@@ -133,17 +133,17 @@ export default function Footer() {
                 </div>
             </div>
             <div className="w-full bg-blue-royal">
-                <div className="max-w-960 w-full mx-auto py-2 px-3 flex gap-2 justify-between items-center text-white">
-                    <div className="flex gap-2 items-center">
-                        <span>
+                <div className="max-w-960 w-full mx-auto py-2 px-3 flex flex-col md:flex-row gap-2 md:justify-between items-center text-white">
+                    <div className="flex flex-col sm:flex-row sm:gap-2 items-center">
+                        <span className="shrink-0">
                             Designed by <span className="font-bold">Nguyen Trung Long</span>
                         </span>
-                        <span>|</span>
-                        <span>
+                        <span className="hidden sm:block">|</span>
+                        <span className="shrink-0">
                             Powered by <span className="font-bold">Next.js</span>
                         </span>
                     </div>
-                    <span>© 2026 Cognition AI, Inc. All rights reserved.</span>
+                    <span className="shrink-0">© 2026 Cognition AI, Inc. All rights reserved.</span>
                 </div>
             </div>
         </>
