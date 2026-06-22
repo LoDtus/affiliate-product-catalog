@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
 const AVAILABLE_COUNTRIES = new Set([
     "us", // United States
@@ -77,15 +76,15 @@ export function proxy(request: NextRequest) {
 
     // Đối với các tuyến đường hợp lệ khác (Ví dụ: /vn/products), tự động cập nhật/gia hạn Cookie quốc gia cho người dùng
     const response = NextResponse.next();
+    response.headers.set("x-user-country", detectedCountry);
     if (!savedCountryCookie) {
         response.cookies.set("user-country", detectedCountry, {
             maxAge: 365 * 24 * 60 * 60, // 1 năm
             path: "/",
-            httpOnly: false, // Để client Redux đọc được
+            httpOnly: false,
             secure: process.env.NODE_ENV === "production",
         });
     }
-
     return response;
 }
 

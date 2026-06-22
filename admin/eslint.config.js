@@ -63,25 +63,6 @@ export default defineConfig([
                     caughtErrorsIgnorePattern: '^_'
                 }
             ],
-
-            // Import theo thứ tự
-            'import/order': [
-                'error',
-                {
-                    groups: [
-                        'builtin', // Thư viện core của Node (fs, path...)
-                        'external', // Thư viện ngoài (react, antd, @mui...)
-                        'internal', // Code nội bộ thông qua alias ( @/... )
-                        ['sibling', 'parent'], // Code cùng thư mục hoặc thư mục cha
-                        'index', // File index
-                        'object',
-                        'type' // Các loại Type/Interface
-                    ],
-                    'newlines-between': 'always', // Bắt buộc có dòng trống giữa các nhóm import lớn
-                    alphabetize: { order: 'asc', caseInsensitive: true } // Sắp xếp theo bảng chữ cái từ A-Z
-                }
-            ],
-
             'no-duplicate-imports': 'error', // Không cho import trùng lặp file
             'import/no-duplicates': 'error',
             'react-hooks/rules-of-hooks': 'error', // Ép viết Hooks đúng chuẩn của React (Không viết Hooks trong câu lệnh if/vòng lặp)

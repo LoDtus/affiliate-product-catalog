@@ -47,16 +47,6 @@ const eslintConfig = defineConfig([
             "no-var": "error", // Không cho phép dùng var
             "prefer-template": "warn", // Ưu tiên dùng template string ${ }
 
-            // --- Sắp xếp các dòng import theo thứ tự bảng chữ cái và gom cụm ---
-            "import/order": [
-                "warn",
-                {
-                    "groups": ["builtin", "external", "internal", ["parent", "sibling"], "index", "type"],
-                    "newlines-between": "always", // Tự động cách dòng giữa các cụm import
-                    "alphabetize": { "order": "asc", "caseInsensitive": true } // Sắp xếp theo bảng chữ cái A-Z
-                }
-            ],
-
             // --- Đảm bảo an toàn logic cho React Hooks ---
             "react-hooks/rules-of-hooks": "error", // Bắt buộc tuân thủ quy tắc viết Hooks
             "react-hooks/exhaustive-deps": "warn", // Cảnh báo khi thiếu dependency trong useEffect/useMemo
