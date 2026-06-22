@@ -1,28 +1,24 @@
 "use client"
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import { Provider } from "react-redux";
 import CountryInitializer from "@/shared/providers/CountryInitializer.provider";
-import { store } from "@/store/store";
+import { makeStore } from "@/store/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
 
 export default function AppProvider({ children }: { children: ReactNode }) {
+    const [store] = useState(() => makeStore());
+    const [persistor] = useState(() => persistStore(store));
+
     return (
         <Provider store={store}>
-            <CountryInitializer>
-                {children}
-            </CountryInitializer>
+            <PersistGate loading={null} persistor={persistor}>
+                <CountryInitializer>
+                    <div className="w-full h-full">
+                        {children}
+                    </div>
+                </CountryInitializer>
+            </PersistGate>
         </Provider>
-        //     <PersistGate loading={<LoadingRedux/>} persistor={persistor}>
-        //         <ReduxProvider> {/* Provider có sử dụng redux */}
-        //             <WebSocketProvider>
-        //                 <AntdRegistry>
-        //                     <GlobalNotification> {/* Provider cung cấp hàm gọi tới thông báo toàn cục, sử dụng thành phần do antd cung cấp */}
-        //                         <div className='w-full h-full'>
-        //                             { children }
-        //                         </div>
-        //                     </GlobalNotification>
-        //                 </AntdRegistry>
-        //             </WebSocketProvider>
-        //         </ReduxProvider>
-        //     </PersistGate>
     );
 }
