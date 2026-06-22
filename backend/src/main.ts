@@ -30,7 +30,7 @@ async function bootstrap() {
 
 	// Security middleware
 	configureHelmet(app, NODE_ENV);
-	configureCors(app, configService);
+	configureCors(app, configService, NODE_ENV);
 	configurePermissionsPolicy(app);
 
 	// Global app config

@@ -1,25 +1,32 @@
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { ConfigService } from "@nestjs/config";
 
-export const configureCors = (app: NestExpressApplication, configService: ConfigService) => {
+export const configureCors = (app: NestExpressApplication, configService: ConfigService, env: string) => {
 	app.enableCors({
 		origin: (origin, callback) => {
-			const POSTMAN_URLS = configService.get<string>('POSTMAN_URLS') || '';
-
 			const allowedOrigins = [
 				'http://localhost:3000',
 				'http://localhost:5173',
 				`http://localhost:${configService.get('FRONTEND_PORT') || 9260}`,
-                `http://localhost:${configService.get('ADMIN_PORT') || 9261}`,
-                ...POSTMAN_URLS.split(',').map(url => url.trim())
+                `http://localhost:${configService.get('ADMIN_PORT') || 9261}`
 			];
 
-			// Cho phép request không có origin (Postman, server-to-server, mobile app...)
-			if (!origin || allowedOrigins.includes(origin)) {
-				callback(null, true);
-			} else {
-				callback(new Error('Not allowed by CORS'));
-			}
+			// 1. Nếu KHÔNG CÓ origin (Postman, Mobile app, Server-to-Server)
+            if (!origin) {
+                // Chỉ cho phép bypass ở môi trường development
+                if (env === 'development') {
+                    return callback(null, true);
+                }
+                // Ở production, chặn thẳng tay các request thiếu Origin header công khai
+                return callback(new Error('Not allowed by CORS: Missing Origin'));
+            }
+
+            // 2. Nếu CÓ origin, lúc này TypeScript tự hiểu `origin` chắc chắn là `string`
+            if (allowedOrigins.includes(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error('Not allowed by CORS'));
+            }
 		},
 		methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'],
 		allowedHeaders: [

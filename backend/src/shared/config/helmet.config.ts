@@ -6,12 +6,12 @@ export const configureHelmet = (
     env: string
 ) => {
     app.use(helmet({
-		contentSecurityPolicy: {
+		contentSecurityPolicy: env === 'production' ? {
 			useDefaults: true,
 			directives: {
 				defaultSrc: ["'self'"],
 			},
-		},
+		} : false,
 		frameguard: { action: 'deny' }, // Chặn iframe nhúng trang của bạn (clickjacking) hoặc 'sameorigin' nếu cần cho admin panel
 		noSniff: true, // Ngăn browser đoán MIME type → tránh MIME sniffing attack
 		hidePoweredBy: true, // Ẩn X-Powered-By (đã mặc định true, nhưng explicit tốt hơn)
