@@ -1,3 +1,4 @@
+import path from 'path';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -39,7 +40,16 @@ import { CoreModule } from './modules/core/core.module';
 
 		ConfigModule.forRoot({
 			isGlobal: true,
-			envFilePath: `.env.${process.env.NODE_ENV || 'development'}`,
+			// envFilePath: `.env.${process.env.NODE_ENV || 'development'}`,
+			envFilePath: [
+				// Ưu tiên 1: Tìm trực tiếp tại thư mục Terminal đang đứng hiện tại
+				`.env.${process.env.NODE_ENV || 'development'}`,
+				// Ưu tiên 2: Dò ngược ra thư mục cha bên ngoài
+				path.resolve(
+					process.cwd(),
+					`../.env.${process.env.NODE_ENV || 'development'}`,
+				),
+			],
 		}),
 		ThrottlerModule.forRootAsync({
 			imports: [ConfigModule],
