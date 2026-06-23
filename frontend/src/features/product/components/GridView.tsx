@@ -24,10 +24,7 @@ export default function GridView() {
 
     return (
         <ul
-            className="flex-1 my-2 grid gap-5"
-            style={{
-                gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
-            }}
+            className="flex-1 my-2 grid gap-5 grid-cols-2 md:grid-cols-3 xl:grid-cols-4"
         >
             {arr?.map((item, itemIndex) => {
                 return (
@@ -40,18 +37,18 @@ export default function GridView() {
                                 <span
                                     id="grid-circleTop"
                                     className="absolute top-0 right-12 z-20 w-5 aspect-square bg-transparent rounded-full"
-                                ></span>
+                                />
                                 <span
                                     id="grid-circleRight"
                                     className="absolute top-12 right-0 z-20 w-5 aspect-square bg-transparent rounded-full"
-                                ></span>
+                                />
                             </div>
                             <div className="relative rounded-lg overflow-hidden">
                                 <span className="absolute top-0 left-0 z-10 pb-0.5 pt-1 px-3 text-sm text-white font-semibold bg-red-600 rounded-ee-lg">
                                     Best Seller
                                 </span>
                                 {/* bo góc đoạn này */}
-                                <a
+                                <Link
                                     href="https://www.youtube.com/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -61,7 +58,7 @@ export default function GridView() {
                                     title="Trang gốc"
                                 >
                                     <SquareArrowOutUpRight />
-                                </a>
+                                </Link>
                                 <Link href="/vi/product/iphone">
                                     <img
                                         className="w-full aspect-square object-cover rounded-lg
@@ -154,7 +151,7 @@ export default function GridView() {
                                 <span>Còn lại {3}</span>
                             </div>
 
-                            <div className="mt-3 grow"></div>
+                            <div className="mt-3 grow"/>
                             <div className="flex gap-1">
                                 <button
                                     className="py-1 px-4 flex gap-1 items-center rounded-md bg-gray-light-button

@@ -4,7 +4,7 @@ export default function FilterSidebar() {
     // khoảng giá, nơi bán, rating, cate list
     // với quần áo: size, màu,
     return (
-        <div className="p-2 flex flex-col border-r border-gray-line">
+        <div className="p-2 hidden lg:flex flex-col border-r border-gray-line">
             <span>Khu vực</span>
 
             <span>Khoảng giá</span>

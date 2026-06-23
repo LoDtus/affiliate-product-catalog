@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 
 export default function AppLayout() {
     return (
-        // <div className="h-full flex flex-col">
         <div className="h-screen w-screen flex flex-col">
             <div className="flex-1 flex">
                 <NavigationBar />

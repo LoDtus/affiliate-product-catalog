@@ -113,22 +113,22 @@ export default function Footer() {
 
                     <div className="basis-[33.33%] flex flex-col gap-2 md:items-end">
                         <h2 className="font-semibold text-xl">Other Projects</h2>
-                        <a
+                        <Link
                             href="#"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-gray-subtitle"
                         >
                             Project 1
-                        </a>
-                        <a
+                        </Link>
+                        <Link
                             href="#"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-gray-subtitle"
                         >
                             Project 2
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

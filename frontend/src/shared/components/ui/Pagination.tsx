@@ -1,6 +1,10 @@
 "use client";
-
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from "lucide-react";
+import {
+    ChevronLeft,
+    ChevronRight,
+    ChevronsLeft,
+    ChevronsRight,
+} from "lucide-react";
 
 interface PaginationProps {
     currentPage: number;
@@ -71,7 +75,7 @@ export default function Pagination({
             currentPage - 1,
             currentPage,
             currentPage + 1,
-            currentPage + 2
+            currentPage + 2,
         ];
 
         return [...startPages, "...", ...middlePages, "...", ...endPages];
@@ -130,7 +134,7 @@ export default function Pagination({
     // RENDER CHO CHẾ ĐỘ LONG
     // ==========================================
     const longPages = getLongPages();
-    
+
     // Điều kiện ẩn hiện nút di chuyển cho chế độ Long
     const hasPrev = currentPage > 1;
     const hasNext = currentPage < totalPages;

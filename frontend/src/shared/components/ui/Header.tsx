@@ -66,7 +66,8 @@ export default function Header() {
                     aria-label="Go to homepage"
                     className="flex-1 shrink-0"
                 >
-                    <h1 className="text-2xl font-bold">Product Review Website</h1>
+                    <h1 className="hidden lg:block text-2xl font-bold">Product Review Website</h1>
+                    <h1 className="block lg:hidden text-2xl font-bold">APC</h1>
                 </Link>
 
                 <SearchBar />

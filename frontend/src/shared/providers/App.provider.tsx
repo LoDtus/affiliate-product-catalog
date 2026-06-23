@@ -14,9 +14,7 @@ export default function AppProvider({ children }: { children: ReactNode }) {
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <CountryInitializer>
-                    <div className="w-full h-full">
-                        {children}
-                    </div>
+                    {children}
                 </CountryInitializer>
             </PersistGate>
         </Provider>

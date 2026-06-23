@@ -13,6 +13,7 @@ import {
     LayoutGrid,
     ListOrdered,
     Sparkles,
+    Funnel,
 } from "lucide-react";
 import { useState } from "react";
 import { Dropdown } from "antd";
@@ -91,7 +92,14 @@ export default function ProductDisplay() {
 
     return (
         <div className="p-3 flex-1">
-            <div className="w-full flex justify-end">
+            <div className="w-full flex justify-between lg:justify-end items-center">
+                <button
+                    className="lg:hidden"
+                    onClick={() => {console.log(1)}}
+                >
+                    <Funnel />
+                    <span>Filter</span>
+                </button>
                 <div className="flex gap-1 items-center">
                     <Dropdown
                         menu={{
@@ -133,7 +141,7 @@ export default function ProductDisplay() {
 
             <GridView />
 
-            <div className="w-full flex justify-end">
+            <div className="w-full flex justify-center lg:justify-end">
                 <Pagination
                     mode="long"
                     currentPage={currentPage}
