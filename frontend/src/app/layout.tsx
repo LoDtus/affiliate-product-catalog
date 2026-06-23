@@ -1,5 +1,5 @@
-import AppProvider from "@/shared/providers/App.provider";
 import "./globals.css";
+import AppProvider from "@/shared/providers/App.provider";
 import type { Metadata } from "next";
 import NextTopLoader from "nextjs-toploader";
 import { ReactNode } from "react";
@@ -40,7 +40,7 @@ export default async function RootLayout({
                 )}
             </head>
 
-            <body className="w-full h-full flex flex-col">
+            <body className="w-full h-full flex flex-col overflow-hidden">
                 <NextTopLoader
                     color="#FF6B35"
                     height={2}

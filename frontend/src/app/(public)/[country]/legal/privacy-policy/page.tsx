@@ -1,5 +1,7 @@
-import PrivacyPolicy from "@/features/legal/components/PrivacyPolicy";
+import LegalDocument from "@/features/legal/components/LegalDocument";
 
 export default function Page() {
-    return <PrivacyPolicy />;
+    return (
+        <LegalDocument/>
+    )
 }

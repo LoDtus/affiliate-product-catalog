@@ -58,15 +58,16 @@ html, body {
 }
 
 button {
-    transition-duration: 200ms;
-}
-
-button:hover {
     cursor: pointer;
+    transition: transform 200ms ease;
 }
 
 button:active {
-    scale: 98%;
+    transform: scale(0.98);
+}
+
+li {
+    list-style-type: none;
 }
 
 .ant-dropdown-menu-item:not(:first-child) {

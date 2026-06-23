@@ -1,5 +1,7 @@
-import TermsOfService from "@/features/legal/components/TermsOfService";
+import LegalDocument from "@/features/legal/components/LegalDocument";
 
 export default function Page() {
-    return <TermsOfService />;
+    return (
+        <LegalDocument />
+    )
 }

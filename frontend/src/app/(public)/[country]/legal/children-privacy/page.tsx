@@ -1,5 +1,7 @@
-import ChildrenPrivacy from "@/features/legal/components/ChildrenPrivacy";
+import LegalDocument from "@/features/legal/components/LegalDocument";
 
 export default function Page() {
-    return <ChildrenPrivacy />;
+    return (
+        <LegalDocument />
+    )
 }

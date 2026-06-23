@@ -130,7 +130,7 @@ export default function Cart() {
                     })}
                 </ul>
             </div>
-            <div className="basis-[30%] border border-gray-line rounded-md"></div>
+            <div className="basis-[30%] border border-gray-line rounded-md"/>
         </div>
     );
 }

@@ -17,26 +17,35 @@ export const EU_COUNTRIES = new Set([
     "pt",
 ]);
 
-export const COOKIE_TEXTS: Record<string, CookieContent> = {
+export const COOKIE_TEXTS: Record<string, any> = {
     eu: {
         title: "We value your privacy",
-        description:
-            "We use cookies to analyze site traffic and track affiliate links to maintain this platform. By clicking 'Accept All', you consent to our use of cookies.",
+        description: "We use cookies to analyze site traffic and track affiliate links. You can customize your choices below.",
         accept: "Accept All",
         reject: "Reject All",
+        manage: "Manage Settings",
+        save: "Save Preferences",
+        categories: {
+            necessary: {
+                title: "Strictly Necessary Cookies",
+                desc: "Required for the website to function properly (e.g., remembering your cookie choices, country routing). Cannot be switched off."
+            },
+            analytics: {
+                title: "Analytics Cookies",
+                desc: "Help us understand how visitors interact with our product tables and spec sheets so we can improve the performance."
+            },
+            marketing: {
+                title: "Affiliate & Marketing Cookies",
+                desc: "Used to track clicks on product redirect buttons to partner stores (e.g., Amazon, eBay) to credit our commission. Disabling this may affect link routing."
+            }
+        }
     },
-    us: {
-        title: "Cookie Notice",
-        description:
-            "We use cookies to optimize your comparison experience. We also use affiliate links which share tracking data with third-party networks.",
-        accept: "Accept",
-        reject: "Do Not Sell/Share My Info",
-    },
+    // Các quốc gia khác bạn có thể dùng chung hoặc dịch tương tự
     default: {
         title: "Cookie Consent",
-        description:
-            "This site uses cookies to enhance your product analysis experience and track affiliate links. By continuing, you agree to our cookie policy.",
+        description: "This site uses cookies to enhance your experience.",
         accept: "Got it!",
         reject: "Decline",
-    },
+        manage: "Preferences"
+    }
 };
