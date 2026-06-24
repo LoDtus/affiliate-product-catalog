@@ -75,7 +75,7 @@ export default function Header() {
 
     return (
         <div className="w-full bg-blue-royal">
-            <div className="max-w-960 w-full mx-auto px-3 py-2 flex flex-col gap-2 text-white">
+            <div className="max-w-960 w-full mx-auto px-3 py-1 flex flex-col gap-2 text-white">
                 <div className="flex gap-2 items-center">
                     <button
                         className="p-1 mr-2

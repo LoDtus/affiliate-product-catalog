@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useState } from "react";
 
 // bỏ khung bao (tham khảo ebay), bo góc tròn
-export default function GridView() {
-    const cols = 4;
+export default function GridView({
+    products
+}) {
     const arr = Array.from({ length: 40 });
     const images = [
         "https://i1-e.pinimg.com/736x/3c/58/69/3c586997e28a3ac7171258a5e66c2780.jpg",

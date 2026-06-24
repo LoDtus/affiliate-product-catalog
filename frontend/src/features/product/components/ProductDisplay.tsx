@@ -1,5 +1,4 @@
 "use client";
-
 import GridView from "@/features/product/components/GridView";
 import Pagination from "@/shared/components/ui/Pagination";
 import {
@@ -15,9 +14,10 @@ import {
     Sparkles,
     Funnel,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Dropdown, type MenuProps } from "antd";
 import { MAPPING } from "@/shared/constants/mapping";
+import ListView from "@/features/product/components/ListView";
 
 const items: NonNullable<MenuProps["items"]> = [
     {
@@ -78,7 +78,8 @@ const items: NonNullable<MenuProps["items"]> = [
 
 export default function ProductDisplay() {
     const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 30; // Giả định tổng số trang lấy từ API về
+    const totalPages = 30;
+    const [products, setProducts] = useState([]);
     const [isClickSort, setIsClickSort] = useState(false);
     const [sortMode, setSortMode] = useState("default");
     const [viewMode, setViewMode] = useState("grid");
@@ -89,12 +90,26 @@ export default function ProductDisplay() {
         console.log("Đang lấy dữ liệu cho trang: ", pageNumber);
     };
 
+    useEffect(() => {
+        const handleGetProducts = async () => {
+            try {
+                const response = null;
+                setProducts([]);
+            } catch (error) {
+                console.error("Error: ", error);
+            }
+        };
+        handleGetProducts();
+    }, []);
+
     return (
         <div className="p-3 flex-1">
             <div className="w-full flex justify-between lg:justify-end items-center">
                 <button
-                    className="lg:hidden"
-                    onClick={() => {console.log(1)}}
+                    className="lg:hidden flex gap-2 items-center"
+                    onClick={() => {
+                        console.log(1);
+                    }}
                 >
                     <Funnel />
                     <span>Filter</span>
@@ -114,9 +129,9 @@ export default function ProductDisplay() {
                             className="flex gap-2 items-center cursor-pointer"
                             onClick={() => setIsClickSort(!isClickSort)}
                         >
-                            <span className="font-semibold">Sắp xếp:</span>
-                            <button className="py-1 px-3 flex gap-1 items-center border border-gray-line rounded-sm">
-                                <span className="text-sm">
+                            <span className="font-bold">Sắp xếp:</span>
+                            <button className="py-1 px-3 flex gap-1 items-center border-2 rounded-sm">
+                                <span className="text-sm font-semibold">
                                     {MAPPING?.SORT_MODE[sortMode]}
                                 </span>
                                 {isClickSort ? <ChevronUp /> : <ChevronDown />}
@@ -124,7 +139,7 @@ export default function ProductDisplay() {
                         </div>
                     </Dropdown>
                     <button
-                        className="p-1.5 aspect-square border border-gray-line rounded-sm"
+                        className="p-1.5 aspect-square border-2 rounded-sm"
                         onClick={() =>
                             setViewMode(viewMode === "grid" ? "list" : "grid")
                         }
@@ -138,7 +153,11 @@ export default function ProductDisplay() {
                 </div>
             </div>
 
-            <GridView />
+            {viewMode === "grid" ? (
+                <GridView products={products} />
+            ) : (
+                <ListView products={products} />
+            )}
 
             <div className="w-full flex justify-center lg:justify-end">
                 <Pagination
