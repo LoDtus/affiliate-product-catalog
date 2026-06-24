@@ -50,11 +50,10 @@ export default function CategoryBar() {
     }
 
     return (
-        <div className="w-full bg-blue-soft">
+        <div className="hidden lg:block w-full bg-blue-soft">
             <ul className="max-w-960 w-full mx-auto flex items-center text-white text-sm font-semibold">
                 {categories?.map((category) => {
                     const isCurrentOpen = openPopoverId === category._id;
-
                     return (
                         <li
                             key={category._id}

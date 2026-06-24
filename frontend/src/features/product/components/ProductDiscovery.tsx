@@ -1,6 +1,6 @@
 export default function ProductDiscovery() {
     return (
-        <div>
+        <div className="p-3">
             trang chứa các cate 123
         </div>
     )

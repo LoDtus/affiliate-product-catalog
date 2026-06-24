@@ -16,11 +16,10 @@ import {
     Funnel,
 } from "lucide-react";
 import { useState } from "react";
-import { Dropdown } from "antd";
-import type { MenuProps } from "antd";
+import { Dropdown, type MenuProps } from "antd";
 import { MAPPING } from "@/shared/constants/mapping";
 
-const items: MenuProps["items"] = [
+const items: NonNullable<MenuProps["items"]> = [
     {
         key: "default",
         label: (

@@ -1,4 +1,18 @@
-/* Scroll Setup */
-.mainLayout {
-    
+.mainLayout::-webkit-scrollbar {
+    width: 8px;
+}
+.mainLayout::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 1000px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.mainLayout::-webkit-scrollbar-thumb {
+    background: #bdbdbd;
+    border-radius: 1000px;
+    border: 2px solid white;
+    min-height: 100px;
+}
+.mainLayout::-webkit-scrollbar-thumb:hover {
+    background: #8b8b8b;
 }
