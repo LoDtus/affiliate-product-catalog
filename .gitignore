@@ -13,6 +13,7 @@ stats.html
 *.pem
 *.key
 core
+!/backend/src/modules/core
 *.cpuprofile
 *.heapprofile
 *.memprofile
