@@ -9,7 +9,7 @@ export default function ArticleLayout() {
                     end
                     className={({ isActive }) => `
                         font-semibold text-lg text-gray-subtitle
-                        cursor-pointer duration-200 transition-all hover:text-black active:scale-98
+                        is-button hover:text-black
                         ${isActive && "text-black! underline"}
                     `}
                 >
@@ -19,7 +19,7 @@ export default function ArticleLayout() {
                     to="/articles/recommended"
                     className={({ isActive }) => `
                         font-semibold text-lg text-gray-subtitle
-                        cursor-pointer duration-200 transition-all hover:text-black active:scale-98
+                        is-button hover:text-black
                         ${isActive && "text-black! underline"}
                     `}
                 >
@@ -29,7 +29,7 @@ export default function ArticleLayout() {
                     to="/articles/archived"
                     className={({ isActive }) => `
                         font-semibold text-lg text-gray-subtitle
-                        cursor-pointer duration-200 transition-all hover:text-black active:scale-98
+                        is-button hover:text-black
                         ${isActive && "text-black! underline"}
                     `}
                 >

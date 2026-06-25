@@ -78,9 +78,7 @@ export default function GridView({
                                     return (
                                         <li
                                             key={imgIndex}
-                                            className="aspect-square rounded-lg overflow-hidden
-                                                duration-200 cursor-pointer active:scale-98
-                                            "
+                                            className="is-button aspect-square rounded-lg overflow-hidden"
                                             style={{
                                                 flexBasis: `calc((100% - 2 * 4px) / 3)`,
                                             }}

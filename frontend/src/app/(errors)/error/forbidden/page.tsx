@@ -1,4 +1,4 @@
-import ErrorView from "@/features/error/components/ErrorView";
+import ErrorView from "@/features/error/ErrorView";
 
 export default function Page() {
     return (

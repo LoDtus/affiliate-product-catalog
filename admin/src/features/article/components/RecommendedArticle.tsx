@@ -103,7 +103,7 @@ export default function RecommendedArticle() {
                                         onClick={() =>
                                             toggleExpand(articleIndex)
                                         }
-                                        className="mt-1 text-blue-500 hover:underline font-medium text-left px-2 self-start cursor-pointer"
+                                        className="mt-1 text-blue-500 hover:underline font-medium text-left px-2 self-start"
                                     >
                                         {isExpanded
                                             ? "Thu gọn"

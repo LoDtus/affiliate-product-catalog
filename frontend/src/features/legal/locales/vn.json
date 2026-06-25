@@ -1,17 +1,3 @@
 {
-    "CookieBanner": {
-        "title": "Chúng tôi coi trọng quyền riêng tư của bạn",
-        "description": "Trang web sử dụng cookie để phân tích lưu lượng và theo dõi liên kết tiếp thị liên kết (affiliate). Bạn có thể tùy chỉnh lựa chọn bên dưới.",
-        "accept": "Đồng ý tất cả",
-        "reject": "Từ chối tất cả",
-        "manage": "Quản lý cài đặt",
-        "save": "Lưu tùy chọn",
-        "necessary_title": "Cookie bắt buộc hệ thống",
-        "necessary_desc": "Cần thiết để trang web hoạt động ổn định (nhớ lựa chọn cookie, định tuyến quốc gia). Không thể tắt.",
-        "analytics_title": "Cookie phân tích",
-        "analytics_desc": "Giúp hiểu cách độc giả tương tác với bảng sản phẩm để cải tiến hiệu năng.",
-        "marketing_title": "Cookie Affiliate & Marketing",
-        "marketing_desc": "Dùng để ghi nhận lượt bấm vào link mua hàng sang các sàn đối tác nhằm tính hoa hồng affiliate."
-    },
-    "LegalDocument": {}
+    
 }

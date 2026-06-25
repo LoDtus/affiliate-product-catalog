@@ -61,7 +61,6 @@ button {
     cursor: pointer;
     transition: transform 200ms ease;
 }
-
 button:active {
     transform: scale(0.98);
 }
@@ -69,6 +68,15 @@ button:active {
 li {
     list-style-type: none;
 }
+
+.is-button {
+    cursor: pointer;
+    transition: transform 200ms ease;
+}
+.is-button:active {
+    transform: scale(0.98);
+}
+
 
 .ant-dropdown-menu-item:not(:first-child) {
     margin-top: 2px !important;

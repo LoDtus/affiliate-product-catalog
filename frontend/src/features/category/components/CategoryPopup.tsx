@@ -39,7 +39,7 @@ export default function CategoryPopup({
                                     <li
                                         key={`level2-${menu2nd._id}`}
                                         className={`py-1 px-4 border rounded-sm font-semibold
-                                                cursor-pointer duration-200 active:scale-98 text-sm
+                                                is-button text-sm
                                                 ${menu2ndIndex > 0 ? "mt-1" : ""}
                                                 ${isCurrentHovered ? "bg-gray-input border-blue-500 text-blue-600" : "hover:bg-gray-input"}
                                             `}
@@ -67,7 +67,7 @@ export default function CategoryPopup({
                                 <li
                                     key={`level3-${menu3rd._id}`}
                                     className={`py-1 px-4 border rounded-sm font-normal text-sm
-                                    cursor-pointer duration-200 hover:bg-gray-input hover:text-blue-500 active:scale-98
+                                    is-button hover:bg-gray-input hover:text-blue-500
                                     ${menu3rdIndex > 0 ? "mt-1" : ""}
                                 `}
                                     onClick={closePopup}

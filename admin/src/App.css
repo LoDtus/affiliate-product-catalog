@@ -1,13 +1,19 @@
 button {
-    transition-property: all;
-    transition-duration: 200ms;
-    transition-timing-function: ease;
-}
-
-button:hover {
     cursor: pointer;
+    transition: transform 200ms ease;
+}
+button:active {
+    transform: scale(0.98);
 }
 
-button:active {
-    scale: 98%;
+li {
+    list-style-type: none;
+}
+
+.is-button {
+    cursor: pointer;
+    transition: transform 200ms ease;
+}
+.is-button:active {
+    transform: scale(0.98);
 }

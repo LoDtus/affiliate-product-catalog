@@ -14,7 +14,7 @@ const importFeatureDictionary = async (
 ) => {
     switch (feature) {
         case "shared":
-            return (await import(`@/shared/locales/${country}.json`)).default;
+            return (await import(`@/shared/components/locales/${country}.json`)).default;
         case "category":
             return (await import(`@/features/category/locales/${country}.json`)).default;
         case "detail":

@@ -37,9 +37,7 @@ export default function GallerySection() {
                     return (
                         <li
                             key={imgIndex}
-                            className="w-25 aspect-square border rounded-md overflow-hidden
-                                duration-200 cursor-pointer active:scale-98
-                            "
+                            className="is-button w-25 aspect-square border rounded-md overflow-hidden"
                             onClick={() => setSelectedImage(imgIndex)}
                         >
                             <img
