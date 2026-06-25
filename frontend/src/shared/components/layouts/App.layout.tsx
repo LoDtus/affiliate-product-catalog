@@ -1,4 +1,4 @@
-import "./layout.css";
+import "../shared.css";
 import SearchBar from "@/features/search/components/SearchBar";
 import CategoryBar from "@/features/category/components/CategoryBar";
 import Footer from "@/shared/components/ui/Footer";
