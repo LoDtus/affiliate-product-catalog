@@ -40,7 +40,6 @@ services:
       target: production
       args:
         - NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}
-        - NEXT_PUBLIC_SOCKET_PATH=${NEXT_PUBLIC_SOCKET_PATH}
         - NODE_ENV=production
     ports:
       - "${FRONTEND_PORT}:${FRONTEND_PORT}"
@@ -60,7 +59,6 @@ services:
       target: production 
       args:
         - VITE_API_BASE_URL=${VITE_API_BASE_URL}
-        - VITE_SOCKET_PATH=${VITE_SOCKET_PATH}
         - NODE_ENV=production
     ports:
       - "${ADMIN_PORT}:80"

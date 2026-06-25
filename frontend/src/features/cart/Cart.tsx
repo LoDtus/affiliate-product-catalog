@@ -10,7 +10,7 @@ export default function Cart() {
 
     // ảnh, tên sản phẩm, người bán, giá, nơi bán
     return (
-        <div className="p-2 flex gap-2">
+        <div className="p-2 flex flex-col lg:flex-row gap-2">
             <div className="basis-[70%]">
                 <div className="mb-1 py-1 flex items-center font-semibold border border-gray-line rounded-md">
                     <span className={`shrink-0 border basis-[4%] `}>STT</span>
@@ -130,7 +130,27 @@ export default function Cart() {
                     })}
                 </ul>
             </div>
-            <div className="basis-[30%] border border-gray-line rounded-md"/>
+            <div className="basis-[30%] h-fit p-5 border border-gray-line rounded-md">
+                <h2 className="font-semibold">Các sản phẩm đã chọn</h2>
+                {arr?.map((item, itemIndex) => {
+                    return (
+                        <li
+                            key={itemIndex}
+                            className="py-1 flex items-center border-b border-gray-line"
+                        >
+                            <div className="basis-[70%]">
+                                <h2 className="font-semibold leading-tight">Sản phẩm {itemIndex + 1}</h2>
+                                <span className="text-sm text-gray-disable leading-tight">Số lượng: 2</span>
+                            </div>
+                            <span className="basis-[30%] shrink-0">15.000đ</span>
+                        </li>
+                    )
+                })}
+                <div className="py-1 flex items-center">
+                    <span className="basis-[70%] shrink-0 font-bold">Tạm tính</span>
+                    <span className="basis-[30%] shrink-0">2.000.000đ</span>
+                </div>
+            </div>
         </div>
     );
 }

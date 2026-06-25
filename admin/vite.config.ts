@@ -8,7 +8,6 @@ export default defineConfig(({ mode }) => {
     const PORT = parseInt(env.ADMIN_PORT, 10);
     const BACKEND_URL = env.BACKEND_URL;
     const API_BASE_URL = env.VITE_API_BASE_URL;
-    const SOCKET_PATH = env.VITE_SOCKET_PATH;
 
     return {
         plugins: [react(), tailwindcss()],
@@ -49,11 +48,6 @@ export default defineConfig(({ mode }) => {
             proxy: {
                 [API_BASE_URL]: {
                     target: BACKEND_URL,
-                    changeOrigin: true,
-                },
-                [SOCKET_PATH]: {
-                    target: BACKEND_URL,
-                    ws: true,
                     changeOrigin: true,
                 },
             },

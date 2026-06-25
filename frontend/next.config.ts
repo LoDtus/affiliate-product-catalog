@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const BACKEND_URL = process.env.BACKEND_URL;
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-const SOCKET_PATH = process.env.NEXT_PUBLIC_SOCKET_PATH;
 
 const nextConfig: NextConfig = {
     output: "standalone",
@@ -39,10 +38,6 @@ const nextConfig: NextConfig = {
             {
                 source: `${API_BASE_URL}/:path*`,
                 destination: `${BACKEND_URL}${API_BASE_URL}/:path*`,
-            },
-            {
-                source: `${SOCKET_PATH}/:path*`,
-                destination: `${BACKEND_URL}${SOCKET_PATH}/:path*`,
             },
         ];
     },

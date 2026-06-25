@@ -15,7 +15,6 @@ COPY --from=development /app/node_modules ./node_modules
 COPY . .
 
 ARG NEXT_PUBLIC_API_BASE_URL
-ARG NEXT_PUBLIC_SOCKET_PATH
 ENV NODE_ENV=production
 
 RUN npm run build

@@ -14,7 +14,6 @@ RUN npm ci
 COPY . .
 
 ARG VITE_API_BASE_URL
-ARG VITE_SOCKET_PATH
 ARG NODE_ENV
 
 RUN npm run build
