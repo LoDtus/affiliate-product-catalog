@@ -1,120 +1,158 @@
-# **[DEVELOPER NAME]** TERMS OF SERVICE
+# TERMS OF SERVICE
 
-Last Updated: **[DATE]**
+**Last Updated:** [Day Month Year]
 
-These terms of service ("Terms") apply to your access and use of **[APP NAME/WEBSITE/OTHER SERVICES]** (the "Service"). Please read them carefully.
+> These Terms of Service incorporate by reference the following separate policies, each of which forms an integral part of this agreement: [Affiliate Disclosure](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#) · [Privacy Policy](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#) · [Cookie Policy](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#) · [Children's Privacy Policy](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#) · [DMCA Policy](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#)
 
-## Accepting these Terms
+---
 
-If you access or use the Service, it means you agree to be bound by all of the terms below. So, before you use the Service, please read all of the terms. If you don't agree to all of the terms below, please do not use the Service. Also, if a term does not make sense to you, please let us know by e-mailing **[SUPPORT EMAIL ADDRESS]**.
+## 1. BINDING AGREEMENT
 
-## Changes to these Terms
+By accessing or using this website (the "**Site**"), you acknowledge that you have read, understood, and agree to be bound by these Terms of Service ("**Terms**"), together with all policies incorporated herein by reference. If you do not agree, you must discontinue use of the Site immediately.
 
-We reserve the right to modify these Terms at any time. For instance, we may need to change these Terms if we come out with a new feature or for some other reason.
+These Terms apply to all visitors and users of the Site, regardless of country of residence.
 
-Whenever we make changes to these Terms, the changes are effective **[TIME PERIOD]** after we post such revised Terms (indicated by revising the date at the top of these Terms) or upon your acceptance if we provide a mechanism for your immediate acceptance of the revised Terms (such as a click-through confirmation or acceptance button). It is your responsibility to check **[APP NAME]** for changes to these Terms.
+---
 
-If you continue to use the Service after the revised Terms go into effect, then you have accepted the changes to these Terms.
+## 2. NATURE OF THE SITE — INFORMATIONAL PLATFORM ONLY
 
-## Privacy Policy
+This Site is strictly an **informational, editorial, and technical specification platform**. We publish product reviews, technical comparisons, and data-driven analyses to help users make informed purchasing decisions.
 
-For information about how we collect and use information about users of the Service, please check out our privacy policy available at **[INSERT LINK]**.
+**We do not sell, stock, ship, or fulfill any physical or digital products.** We are not a retailer, marketplace, or e-commerce platform. No commercial transaction of any kind takes place on this Site.
 
-## Third-Party Services
+---
 
-From time to time, we may provide you with links to third party websites or services that we do not own or control. Your use of the Service may also include the use of applications that are developed or owned by a third party. Your use of such third party applications, websites, and services is governed by that party's own terms of service or privacy policies. We encourage you to read the terms and conditions and privacy policy of any third party application, website or service that you visit or use.
+## 3. AFFILIATE RELATIONSHIPS
 
-## Creating Accounts
+This Site participates in affiliate marketing programs. When you click certain outbound links and make a purchase on a third-party merchant's platform, we may receive a commission at no additional cost to you.
 
-When you create an account or use another service to log in to the Service, you agree to maintain the security of your password and accept all risks of unauthorized access to any data or other information you provide to the Service.
+Full disclosure of our affiliate practices, including the nature of affiliate links and their effect on our editorial independence, is set out in our **[Affiliate Disclosure](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#)**, which is incorporated into these Terms by reference.
 
-If you discover or suspect any Service security breaches, please let us know as soon as possible.
+---
 
-## Your Content & Conduct
+## 4. DATA COLLECTION & PRIVACY
 
-**[CUSTOMIZE THE FOLLOWING SECTION BASED ON THE TYPE OF CONTENT SUBMITTED BY USERS.]**
+Your use of this Site is also governed by our **[Privacy Policy](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#)** and **[Cookie Policy](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#)**, both of which are incorporated into these Terms by reference. These documents describe:
 
-Our Service allows you and other users to post, link and otherwise make available content. You are responsible for the content that you make available to the Service, including its legality, reliability, and appropriateness.
+- What data we collect (aggregated, non-personal analytics and Local Storage preferences);
+- How cookies, Local Storage, and third-party tracking technologies are used;
+- Your rights in relation to any data, including rights available under GDPR, UK GDPR, and equivalent legislation.
 
-When you post, link or otherwise make available content to the Service, you grant us the right and license to use, reproduce, modify, publicly perform, publicly display and distribute your content on or through the Service. We may format your content for display throughout the Service, but we will not edit or revise the substance of your content itself.
+By using the Site, you acknowledge that you have read and understood these documents.
 
-Aside from our limited right to your content, you retain all of your rights to the content you post, link and otherwise make available on or through the Service.
+---
 
-**[CUSTOMIZE THE FOLLOWING SECTION BASED ON YOUR DATA RETENTION PRACTICES.]**
+## 5. CHILDREN'S PRIVACY
 
-You can remove the content that you posted by deleting it. Once you delete your content, it will not appear on the Service, but copies of your deleted content may remain in our system or backups for some period of time. We will retain web server access logs for a maximum of **[TIME PERIOD]** and then delete them.
+This Site is not directed at, and is not intended for use by, children under the age of 13 (or 16 where required by applicable law, including EU member states). We do not knowingly collect any personal data from minors.
 
-You may not post, link and otherwise make available on or through the Service any of the following:
+Our full policy on children's privacy is set out in the **[Children's Privacy Policy](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#)**, incorporated into these Terms by reference.
 
-**[INCLUDE ANY OTHER CONTENT RESTRICTIONS THAT MAY BE UNIQUE TO YOUR COMPANY.]**
+---
 
-* Content that is libelous, defamatory, bigoted, fraudulent or deceptive;
-* Content that is illegal or unlawful, that would otherwise create liability;
-* Content that may infringe or violate any patent, trademark, trade secret, copyright, right of privacy, right of publicity or other intellectual or other right of any party;
-* Mass or repeated promotions, political campaigning or commercial messages directed at users who do not follow you (SPAM);
-* Private information of any third party (e.g., addresses, phone numbers, email addresses, Social Security numbers and credit card numbers); and
-* Viruses, corrupted data or other harmful, disruptive or destructive files or code.
+## 6. INTELLECTUAL PROPERTY
 
-Also, you agree that you will not do any of the following in connection with the Service or other users:
+All original content on this Site — including editorial text, comparison methodologies, data presentations, and analytical commentary — is the intellectual property of the Site owner and is protected under applicable copyright and intellectual property laws.
 
-* Use the Service in any manner that could interfere with, disrupt, negatively affect or inhibit other users from fully enjoying the Service or that could damage, disable, overburden or impair the functioning of the Service;
-* Impersonate or post on behalf of any person or entity or otherwise misrepresent your affiliation with a person or entity;
-* Collect any personal information about other users, or intimidate, threaten, stalk or otherwise harass other users of the Service;
-* Create an account or post any content if you are not over 13 years of age years of age; and
-* Circumvent or attempt to circumvent any filtering, security measures, rate limits or other features designed to protect the Service, users of the Service, or third parties.
+Product names, trademarks, brand names, and product images are the property of their respective manufacturers and rights holders. Any such references are made solely for **informational and editorial identification purposes** and do not imply affiliation with, endorsement by, or sponsorship from those rights holders.
 
-## **[DEVELOPER NAME]** Materials
+For copyright infringement notices, please refer to our **[DMCA Policy](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#)**, incorporated into these Terms by reference.
 
-We put a lot of effort into creating the Service including, the logo and all designs, text, graphics, pictures, information and other content (excluding your content). This property is owned by us or our licensors and it is protected by U.S. and international copyright laws. We grant you the right to use it.
+---
 
-However, unless we expressly state otherwise, your rights do not include: (i) publicly performing or publicly displaying the Service; (ii) modifying or otherwise making any derivative uses of the Service or any portion thereof; (iii) using any data mining, robots or similar data gathering or extraction methods; (iv) downloading (other than page caching) of any portion of the Service or any information contained therein; (v) reverse engineering or accessing the Service in order to build a competitive product or service; or (vi) using the Service other than for its intended purposes. If you do any of this stuff, we may terminate your use of the Service.
+## 7. PROHIBITED USE
 
-## Hyperlinks and Third Party Content
+You agree not to:
 
-You may create a hyperlink to the Service. But, you may not use, frame or utilize framing techniques to enclose any of our trademarks, logos or other proprietary information without our express written consent.
+- Use any automated system (including bots, crawlers, or scrapers) to access, extract, or harvest content from the Site for any commercial purpose without prior written consent;
+- Reproduce, republish, or redistribute the Site's original content for commercial gain;
+- Attempt to interfere with or disrupt the integrity, security, or performance of the Site or its infrastructure;
+- Use the Site in any manner that violates applicable local, national, or international law or regulation.
 
-**[DEVELOPER NAME]** makes no claim or representation regarding, and accepts no responsibility for third party websites accessible by hyperlink from the Service or websites linking to the Service. When you leave the Service, you should be aware that these Terms and our policies no longer govern.
+---
 
-If there is any content on the Service from you and others, we don't review, verify or authenticate it, and it may include inaccuracies or false information. We make no representations, warranties, or guarantees relating to the quality, suitability, truth, accuracy or completeness of any content contained in the Service. You acknowledge sole responsibility for and assume all risk arising from your use of or reliance on any content.
+## 8. DISCLAIMER OF WARRANTIES ("AS IS")
 
-## Unavoidable Legal Stuff
+ALL CONTENT, DATA, COMPARISONS, AND TECHNICAL SPECIFICATIONS ON THIS SITE ARE PROVIDED ON AN **"AS IS"** AND **"AS AVAILABLE"** BASIS, FOR INFORMATIONAL PURPOSES ONLY.
 
-THE SERVICE AND ANY OTHER SERVICE AND CONTENT INCLUDED ON OR OTHERWISE MADE AVAILABLE TO YOU THROUGH THE SERVICE ARE PROVIDED TO YOU ON AN AS IS OR AS AVAILABLE BASIS WITHOUT ANY REPRESENTATIONS OR WARRANTIES OF ANY KIND. WE DISCLAIM ANY AND ALL WARRANTIES AND REPRESENTATIONS (EXPRESS OR IMPLIED, ORAL OR WRITTEN) WITH RESPECT TO THE SERVICE AND CONTENT INCLUDED ON OR OTHERWISE MADE AVAILABLE TO YOU THROUGH THE SERVICE WHETHER ALLEGED TO ARISE BY OPERATION OF LAW, BY REASON OF CUSTOM OR USAGE IN THE TRADE, BY COURSE OF DEALING OR OTHERWISE.
+TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION:
 
-IN NO EVENT WILL **[DEVELOPER NAME]** BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY SPECIAL, INDIRECT, INCIDENTAL, EXEMPLARY OR CONSEQUENTIAL DAMAGES OF ANY KIND ARISING OUT OF OR IN CONNECTION WITH THE SERVICE OR ANY OTHER SERVICE AND/OR CONTENT INCLUDED ON OR OTHERWISE MADE AVAILABLE TO YOU THROUGH THE SERVICE, REGARDLESS OF THE FORM OF ACTION, WHETHER IN CONTRACT, TORT, STRICT LIABILITY OR OTHERWISE, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES OR ARE AWARE OF THE POSSIBILITY OF SUCH DAMAGES. OUR TOTAL LIABILITY FOR ALL CAUSES OF ACTION AND UNDER ALL THEORIES OF LIABILITY WILL BE LIMITED TO THE AMOUNT YOU PAID TO **[DEVELOPER NAME]**. THIS SECTION WILL BE GIVEN FULL EFFECT EVEN IF ANY REMEDY SPECIFIED IN THIS AGREEMENT IS DEEMED TO HAVE FAILED OF ITS ESSENTIAL PURPOSE.
+- Any warranty of accuracy, completeness, timeliness, or reliability of any data or specification;
+- Any implied warranty of merchantability or fitness for a particular purpose;
+- Any warranty that the Site will be uninterrupted, error-free, or free of harmful components.
 
-You agree to defend, indemnify and hold us harmless from and against any and all costs, damages, liabilities, and expenses (including attorneys' fees, costs, penalties, interest and disbursements) we incur in relation to, arising from, or for the purpose of avoiding, any claim or demand from a third party relating to your use of the Service or the use of the Service by any person using your account, including any claim that your use of the Service violates any applicable law or regulation, or the rights of any third party, and/or your violation of these Terms.
+**Product specifications and pricing change frequently.** You are solely responsible for verifying all information on the relevant merchant's or manufacturer's official platform before making any purchase decision.
 
-## Copyright Complaints
+Where applicable law does not permit the exclusion of certain warranties, those warranties are limited to the minimum extent and shortest duration permitted by law.
 
-**[IF YOUR APPLICATION WILL PERMIT USER GENERATED CONTENT, CONSULT WITH LEGAL COUNSEL REGARDING DMCA COMPLIANCE PROCEDURES AND INCLUDE THIS SECTION AND A COPYRIGHT POLICY.]**
+---
 
-We take intellectual property rights seriously. In accordance with the Digital Millennium Copyright Act ("DMCA") and other applicable law, we have adopted a policy of terminating, in appropriate circumstances and, at our sole discretion, access to the service for users who are deemed to be repeat infringers. **[LINK TO FULL COPYRIGHT POLICY IF APPLICABLE.]**
+## 9. LIMITATION OF LIABILITY
 
-## Governing Law
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE SITE, ITS OWNERS, OPERATORS, CONTRIBUTORS, OR AFFILIATES BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES — INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, REVENUE, DATA, OR GOODWILL — ARISING OUT OF:
 
-**[PLEASE NOTE THAT THIS TEMPLATE INCORPORATES TERMS AND SECTIONS THAT ARE INTENDED FOR U.S-BASED SERVICES. CONSULT WITH LEGAL COUNSEL TO DETERMINE THE APPROPRIATE GOVERNING LAW FOR YOUR TERMS AND WHETHER YOU ARE SUBJECT TO ANY ADDITIONAL LEGAL REQUIREMENTS BASED ON HOW AND WHERE YOUR SERVICE OPERATES.]**
+- Your use of, or inability to use, the Site or any content thereon;
+- Your reliance on any product specification, price, comparison, or editorial content;
+- Any transaction conducted on a third-party merchant platform linked from this Site.
 
-The validity of these Terms and the rights, obligations, and relations of the parties under these Terms will be construed and determined under and in accordance with the laws of the **[U.S. STATE NAME OR OTHER JURISDICTION]**, without regard to conflicts of law principles.
+**TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, OUR TOTAL AGGREGATE LIABILITY FOR ANY CLAIM ARISING OUT OF OR RELATING TO THESE TERMS SHALL NOT EXCEED $0.00 USD.**
 
-## Jurisdiction
+Where applicable law — including the laws of EU member states, the United Kingdom, or other consumer-protection jurisdictions — does not permit the complete exclusion or limitation of liability (such as in cases of gross negligence, wilful misconduct, or fraudulent misrepresentation), our liability shall be limited to **the minimum extent required by such law**. This carve-out does not otherwise expand our liability.
 
-You expressly agree that exclusive jurisdiction for any dispute with the Service or relating to your use of it, resides in the courts of the **[STATE NAME OR JURISDICTION]** and you further agree and expressly consent to the exercise of personal jurisdiction in the courts of the **[STATE NAME OR JURISDICTION]** located in **[CITY AND STATE IF APPLICABLE]** in connection with any such dispute including any claim involving Service. You further agree that you and Service will not commence against the other a class action, class arbitration or other representative action or proceeding.
+---
 
-## Termination
+## 10. THIRD-PARTY LINKS & MERCHANT PLATFORMS
 
-If you breach any of these Terms, we have the right to suspend or disable your access to or use of the Service.
+This Site contains links to third-party websites and merchant platforms. These links are provided for convenience only.
 
-## Entire Agreement
+We have no control over and assume no responsibility for the content, privacy practices, product availability, pricing, quality, fulfillment, returns, or legality of any third-party site. The inclusion of any link does not imply our endorsement of the linked site or its operator.
 
-These Terms constitute the entire agreement between you and **[DEVELOPER NAME]** regarding the use of the Service, superseding any prior agreements between you and **[DEVELOPER NAME]** relating to your use of the Service.
+**Any transaction you conduct on a third-party platform is exclusively between you and that merchant.** We are not a party to any such transaction.
 
-## Feedback
+---
 
-Please let us know what you think of the Service, these Terms and, in general, **[APP NAME]**. When you provide us with any feedback, comments or suggestions about the Service, these Terms and, in general, **[APP NAME]**, you irrevocably assign to us all of your right, title and interest in and to your feedback, comments and suggestions.
+## 11. CLASS ACTION WAIVER
 
-## Questions & Contact Information
+TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, YOU AND WE AGREE THAT EACH PARTY MAY BRING CLAIMS AGAINST THE OTHER ONLY IN AN INDIVIDUAL CAPACITY, AND NOT AS A PLAINTIFF OR CLASS MEMBER IN ANY PURPORTED CLASS ACTION, COLLECTIVE ACTION, OR REPRESENTATIVE PROCEEDING.
 
-Questions or comments about the Service may be directed to us at the email address **[SUPPORT EMAIL ADDRESS]**.
+Residents of jurisdictions where such waivers are prohibited by mandatory law — including EU member states and the United Kingdom — retain their applicable statutory rights. This waiver does not apply where prohibited.
 
-**[FINAL NOTE: CERTAIN APPLICATION STORES (E.G., APPLE APP STORE, GOOGLE PLAY, ETC.) MAY REQUIRE YOU TO INCLUDE ADDITIONAL TERMS AND CONDITIONS IN THESE TERMS OF SERVICE AS A CONDITION TO MAKING YOUR APPLICATION AVAILABLE ON SUCH PLATFORM. IF APPLICABLE, REVIEW YOUR AGREEMENT WITH ANY SUCH APPLICATION STORE TO DETERMINE IF ADDITIONAL TERMS ARE REQUIRED.]**
+---
+
+## 12. GOVERNING LAW & JURISDICTION
+
+These Terms, and any dispute arising out of or relating to your use of the Site, shall be governed by and construed in accordance with the **laws of the Socialist Republic of Vietnam**, without regard to its conflict of laws principles.
+
+Any dispute, claim, or controversy shall be submitted to the **exclusive jurisdiction of the competent courts located in Hanoi, Vietnam**.
+
+*This governing law clause does not deprive users in the EU, UK, or other consumer-protection jurisdictions of mandatory rights available under their local law, including the right to bring proceedings before courts in their country of habitual residence.*
+
+---
+
+## 13. SEVERABILITY
+
+If any provision of these Terms is found to be unlawful, void, or unenforceable, that provision shall be deemed severable and shall not affect the validity or enforceability of the remaining provisions, which shall continue in full force and effect.
+
+---
+
+## 14. MODIFICATIONS
+
+We reserve the right to modify these Terms at any time without prior notice. The **"Last Updated"** date at the top of this page reflects the date of the most recent revision. Your continued use of the Site following any modification constitutes your acceptance of the updated Terms.
+
+We also reserve the right to modify, suspend, or discontinue the Site at any time without liability.
+
+---
+
+## 15. ENTIRE AGREEMENT
+
+These Terms, together with the **[Affiliate Disclosure](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#)**, **[Privacy Policy](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#)**, **[Cookie Policy](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#)**, **[Children's Privacy Policy](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#)**, and **[DMCA Policy](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#)**, constitute the entire agreement between you and us regarding your use of the Site, and supersede all prior or contemporaneous agreements, representations, and understandings relating to the subject matter hereof.
+
+---
+
+## 16. CONTACT
+
+For general inquiries regarding these Terms:
+
+**Email:** [your@email.com]
+
+For copyright / DMCA notices, see the **[DMCA Policy](https://claude.ai/chat/ee96d43c-614f-4e88-846b-8f6c5840f7ae#)** for the designated contact.
