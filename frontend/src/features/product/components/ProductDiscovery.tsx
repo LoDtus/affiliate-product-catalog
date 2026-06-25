@@ -4,11 +4,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/grid";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Grid } from "swiper/modules";
+import { Pagination as SwiperPagination, Grid } from "swiper/modules";
 import ListView from "@/features/product/components/ListView";
 import GridView from "@/features/product/components/GridView";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SwitchModeButton from "@/features/product/components/SwitchModeButton";
+import Pagination from "@/shared/components/ui/Pagination";
 
 /**
  * new, trend, best_seller, flash_sale
@@ -18,6 +19,28 @@ export default function ProductDiscovery() {
     const prod = Array.from({ length: 100 });
     const [sortMode, setSortMode] = useState("default");
     const [viewMode, setViewMode] = useState("grid");
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = 30;
+    const [products, setProducts] = useState([]);
+
+    function chunkArray<T>(arr: T[], size: number): T[][] {
+        return Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
+            arr.slice(i * size, i * size + size),
+        );
+    }
+
+    const handlePageChange = (pageNumber: number) => {
+        setCurrentPage(pageNumber);
+        console.log("Đang lấy dữ liệu cho trang: ", pageNumber);
+    };
+
+    useEffect(() => {
+        const handleGetProducts = async () => {
+            const response = [];
+            setProducts(response);
+        };
+        handleGetProducts();
+    }, []);
 
     return (
         <div className="p-3">
@@ -29,7 +52,7 @@ export default function ProductDiscovery() {
                 onSlideChange={() => console.log("slide change")}
                 onSwiper={(swiper) => console.log(swiper)}
                 pagination={true}
-                modules={[Pagination]}
+                modules={[SwiperPagination]}
                 loop={true}
             >
                 {categories?.map((item, itemIndex) => {
@@ -86,32 +109,26 @@ export default function ProductDiscovery() {
                 className="mySwiper"
                 spaceBetween={8}
                 slidesPerView={3}
-                grid={{
-                    rows: 2,
-                    fill: "row",
-                }}
                 breakpoints={{
-                    768: {
-                        slidesPerView: 4,
-                        grid: { rows: 2, fill: "row" },
-                    },
-                    1024: {
-                        slidesPerView: 5,
-                        grid: { rows: 2, fill: "row" },
-                    },
+                    768: { slidesPerView: 4 },
+                    1024: { slidesPerView: 5 },
                 }}
-                modules={[Grid]}
+                // KHÔNG dùng modules={[Grid]} nữa
             >
-                {prod?.map((item, itemIndex) => {
-                    return (
-                        <SwiperSlide
-                            key={itemIndex}
-                            className="p-3 border rounded-md bg-white"
-                        >
-                            <div>Sản phẩm {itemIndex + 1}</div>
-                        </SwiperSlide>
-                    );
-                })}
+                {chunkArray(prod, 2).map((pair, pairIndex) => (
+                    <SwiperSlide key={pairIndex}>
+                        <div className="flex flex-col gap-2">
+                            {pair.map((item, i) => (
+                                <div
+                                    key={i}
+                                    className="p-3 border rounded-md bg-white"
+                                >
+                                    <div>Sản phẩm {pairIndex * 2 + i + 1}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </SwiperSlide>
+                ))}
             </Swiper>
 
             <h2 className="mt-5 mb-2 font-semibold text-xl">Title 4</h2>
@@ -119,32 +136,26 @@ export default function ProductDiscovery() {
                 className="mySwiper"
                 spaceBetween={8}
                 slidesPerView={3}
-                grid={{
-                    rows: 2,
-                    fill: "row",
-                }}
                 breakpoints={{
-                    768: {
-                        slidesPerView: 4,
-                        grid: { rows: 2, fill: "row" },
-                    },
-                    1024: {
-                        slidesPerView: 5,
-                        grid: { rows: 2, fill: "row" },
-                    },
+                    768: { slidesPerView: 4 },
+                    1024: { slidesPerView: 5 },
                 }}
-                modules={[Grid]}
+                // KHÔNG dùng modules={[Grid]} nữa
             >
-                {prod?.map((item, itemIndex) => {
-                    return (
-                        <SwiperSlide
-                            key={itemIndex}
-                            className="p-3 border rounded-md bg-white"
-                        >
-                            <div>Sản phẩm {itemIndex + 1}</div>
-                        </SwiperSlide>
-                    );
-                })}
+                {chunkArray(prod, 2).map((pair, pairIndex) => (
+                    <SwiperSlide key={pairIndex}>
+                        <div className="flex flex-col gap-2">
+                            {pair.map((item, i) => (
+                                <div
+                                    key={i}
+                                    className="p-3 border rounded-md bg-white"
+                                >
+                                    <div>Sản phẩm {pairIndex * 2 + i + 1}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </SwiperSlide>
+                ))}
             </Swiper>
 
             <h2 className="mt-5 mb-2 font-semibold text-xl">Title 5</h2>
@@ -152,48 +163,50 @@ export default function ProductDiscovery() {
                 className="mySwiper"
                 spaceBetween={8}
                 slidesPerView={3}
-                grid={{
-                    rows: 2,
-                    fill: "row",
-                }}
                 breakpoints={{
-                    768: {
-                        slidesPerView: 4,
-                        grid: { rows: 2, fill: "row" },
-                    },
-                    1024: {
-                        slidesPerView: 5,
-                        grid: { rows: 2, fill: "row" },
-                    },
+                    768: { slidesPerView: 4 },
+                    1024: { slidesPerView: 5 },
                 }}
-                modules={[Grid]}
+                // KHÔNG dùng modules={[Grid]} nữa
             >
-                {prod?.map((item, itemIndex) => {
-                    return (
-                        <SwiperSlide
-                            key={itemIndex}
-                            className="p-3 border rounded-md bg-white"
-                        >
-                            <div>Sản phẩm {itemIndex + 1}</div>
-                        </SwiperSlide>
-                    );
-                })}
+                {chunkArray(prod, 2).map((pair, pairIndex) => (
+                    <SwiperSlide key={pairIndex}>
+                        <div className="flex flex-col gap-2">
+                            {pair.map((item, i) => (
+                                <div
+                                    key={i}
+                                    className="p-3 border rounded-md bg-white"
+                                >
+                                    <div>Sản phẩm {pairIndex * 2 + i + 1}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </SwiperSlide>
+                ))}
             </Swiper>
 
-            
-
-            <h2 className="mt-5 mb-2 font-semibold text-xl">Title 6</h2>
-            <SwitchModeButton
-                sortMode={sortMode}
-                setSortMode={setSortMode}
-                viewMode={viewMode}
-                setViewMode={setViewMode}
-            />
+            <h2 className="mt-5 mb-2 font-semibold text-xl">
+                Các sản phẩm khác
+            </h2>
+            <div className="w-full flex justify-end">
+                <SwitchModeButton
+                    sortMode={sortMode}
+                    setSortMode={setSortMode}
+                    viewMode={viewMode}
+                    setViewMode={setViewMode}
+                />
+            </div>
             {viewMode === "grid" ? (
                 <GridView products={prod} />
             ) : (
                 <ListView products={prod} />
             )}
+            <Pagination
+                mode="long"
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+            />
         </div>
     );
 }
