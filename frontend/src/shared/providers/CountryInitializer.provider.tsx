@@ -1,7 +1,7 @@
 "use client";
 import { ReactNode, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Cookies from "js-cookie";
+import { useParams } from "next/navigation";
 import { preferenceActions } from "@/features/preference/preference.slice";
 
 export default function CountryInitializer({
@@ -10,13 +10,14 @@ export default function CountryInitializer({
     children: ReactNode;
 }) {
     const dispatch = useDispatch();
+    const params = useParams();
+    const currentCountry = params?.country as string;
 
     useEffect(() => {
-        const currentCountry = Cookies.get("user-country");
         if (currentCountry) {
             dispatch(preferenceActions.setCountry(currentCountry));
         }
-    }, [dispatch]);
+    }, [currentCountry, dispatch]);
 
     return <>{children}</>;
 }

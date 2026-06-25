@@ -1,0 +1,28 @@
+{
+    "ErrorView": {
+        "retry": "Thử lại",
+        "templates": {
+            "notFound": {
+                "code": "404",
+                "title": "Không tìm thấy trang",
+                "description": [
+                    "Đường dẫn bạn truy cập không tồn tại",
+                    "hoặc đã bị thay đổi di chuyển."
+                ],
+                "showHomeButton": true,
+                "homeLabel": "Quay lại Trang chủ"
+            },
+            "serverError": {
+                "code": "500",
+                "title": "Lỗi hệ thống",
+                "description": [
+                    "Đã có lỗi xảy ra từ phía máy chủ.",
+                    "Vui lòng thử lại sau ít phút."
+                ],
+                "showHomeButton": true,
+                "homeLabel": "Quay lại Trang chủ",
+                "showRetry": true
+            }
+        }
+    }
+}

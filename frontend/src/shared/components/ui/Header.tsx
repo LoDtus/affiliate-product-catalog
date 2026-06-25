@@ -8,6 +8,7 @@ import * as Flags from "country-flag-icons/react/3x2";
 import Link from "next/link";
 import { useRouter } from "nextjs-toploader/app";
 import { Dropdown, type MenuProps } from "antd";
+import { useTranslation } from "@/shared/hooks/useTranslation";
 
 const COUNTRIES = [
     { code: "vn", name: "Vietnam" },
@@ -18,6 +19,7 @@ const COUNTRIES = [
 ];
 
 export default function Header() {
+    const dict = useTranslation();
     const params = useParams();
     const pathname = usePathname();
     const router = useRouter();

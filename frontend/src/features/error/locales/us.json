@@ -1,0 +1,28 @@
+{
+    "ErrorView": {
+        "retry": "Try Again",
+        "templates": {
+            "notFound": {
+                "code": "404",
+                "title": "Page Not Found",
+                "description": [
+                    "The page you are looking for doesn't exist",
+                    "or has been moved."
+                ],
+                "showHomeButton": true,
+                "homeLabel": "Back to Home"
+            },
+            "serverError": {
+                "code": "500",
+                "title": "Internal Server Error",
+                "description": [
+                    "Something went wrong on our server.",
+                    "Please try again later."
+                ],
+                "showHomeButton": true,
+                "homeLabel": "Back to Home",
+                "showRetry": true
+            }
+        }
+    }
+}

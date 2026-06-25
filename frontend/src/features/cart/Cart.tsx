@@ -3,7 +3,9 @@ import { InputNumber } from "antd";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import Link from "next/link";
 
-export default function Cart() {
+export default function Cart({
+    dict
+}) {
     const arr = Array.from({ length: 10 });
 
     const removeItem = () => {};

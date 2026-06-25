@@ -1,0 +1,17 @@
+{
+    "CookieBanner": {
+        "title": "We value your privacy",
+        "description": "We use cookies to analyze site traffic and track affiliate links. You can customize your choices below.",
+        "accept": "Accept All",
+        "reject": "Reject All",
+        "manage": "Manage Settings",
+        "save": "Save Preferences",
+        "necessary_title": "Strictly Necessary Cookies",
+        "necessary_desc": "Required for the website to function properly (e.g., remembering your cookie choices, country routing). Cannot be switched off.",
+        "analytics_title": "Analytics Cookies",
+        "analytics_desc": "Help us understand how visitors interact with our product tables and spec sheets so we can improve the performance.",
+        "marketing_title": "Affiliate & Marketing Cookies",
+        "marketing_desc": "Used to track clicks on product redirect buttons to partner stores to credit our commission."
+    },
+    "LegalDocument": {}
+}

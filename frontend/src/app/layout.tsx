@@ -5,6 +5,7 @@ import NextTopLoader from "nextjs-toploader";
 import { ReactNode } from "react";
 import CookieBanner from "@/features/legal/components/CookieBanner";
 import { headers, cookies } from 'next/headers';
+import { getDictionary } from "@/infrastructure/i18n/get-dictionary";
 
 export const metadata: Metadata = {
     title: "Affiliate Product Catalog",
@@ -20,6 +21,9 @@ export default async function RootLayout({
     const userCountry = headersList.get("x-user-country") || "US";
     const cookieStore = await cookies();
     const hasConsent = cookieStore.get('cookie-consent')?.value === 'granted';
+    const legalDict = await getDictionary(userCountry, "legal");
+    const fallbackDict = await getDictionary("us", "legal");
+    const bannerContent = legalDict?.CookieBanner || fallbackDict?.CookieBanner || {};
 
     return (
         <html lang="en" className="w-full h-full antialiased">
@@ -49,7 +53,10 @@ export default async function RootLayout({
                     crawlSpeed={100}
                 />
                 <AppProvider>{children}</AppProvider>
-                <CookieBanner country={userCountry} />
+                <CookieBanner
+                    country={userCountry}
+                    content={bannerContent}
+                />
             </body>
         </html>
     );
